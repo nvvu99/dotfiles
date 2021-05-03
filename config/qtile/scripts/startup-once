@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# xss-lock -q -- betterlockscreen -l dimblur &
+# kquitapp5 plasmashell
+# picom -b &
+nm-applet &
+clipit &
+megasync &
+# pcloud &
+# guake &
+fcitx5 &
+workrave &
+java -jar /opt/xdman/xdman.jar -m &
+GTK_USE_PORTAL=1 &
+kdeconnect-indicator &
+xfce4-power-manager &
+# xscreensaver &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# sleep 60
+nitrogen --restore &
+conky -c ~/.config/conky/conkyrc &
+dunst -conf ~/.config/dunst/dunstrc &

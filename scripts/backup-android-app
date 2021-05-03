@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+backup_app() {
+    for APP in $(adb shell pm list packages -3 -f); do
+        adb pull $( echo ${APP} | sed "s/^package://" | sed "s/base.apk=/base.apk /").apk
+    done
+}
+
+restore_app() {
+    find -type f -name '*.apk' -exec adb install {} +
+}
+
+main() {
+    while getopts 'br' option; do
+        case $option in
+            b)
+                backup_app
+                ;;
+            r)
+                restore_app
+                ;;
+            *)
+                echo 'Usage: backup-android-app [-b] [-r]'
+                exit 1
+                ;;
+        esac
+    done
+}
+
+main "$@"

@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Rofi color theme
+
+   Based on the Gruvbox color scheme for Vim by morhetz
+   https://github.com/morhetz/gruvbox
+   ========================================================================== */
+
+* {
+    font: "Fira Code Retina 12";
+
+    /* Theme settings */
+    highlight: bold italic;
+    scrollbar: true;
+
+    /* dracula dark colors */
+    dracula-bg0-hard:     #282a36;
+    dracula-bg0:          #44475a;
+    dracula-bg2:          #d6acff;
+    dracula-fg0:          #21222c;
+    dracula-fg1:          #f8f8f2;
+    dracula-red-dark:     #ff5555;
+    dracula-red-light:    #ff6e6e;
+    dracula-yellow-dark:  #f1fa8c;
+    dracula-yellow-light: #ffffa5;
+    dracula-gray:         #a89984;
+
+    /* Theme colors */
+    background:                  @dracula-bg0-hard;
+    background-color:            @background;
+    foreground:                  @dracula-fg1;
+    border-color:                @dracula-gray;
+    separatorcolor:              @border-color;
+    scrollbar-handle:            @border-color;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @dracula-bg0;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @dracula-bg2;
+    selected-normal-foreground:  @dracula-fg0;
+
+    active-background:           @dracula-yellow-dark;
+    active-foreground:           @background;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    selected-active-background:  @dracula-yellow-light;
+    selected-active-foreground:  @active-foreground;
+
+    urgent-background:           @dracula-red-dark;
+    urgent-foreground:           @background;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @dracula-red-light;
+    selected-urgent-foreground:  @urgent-foreground;
+}
+
+@import "gruvbox-common.rasi"
+

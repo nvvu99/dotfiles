@@ -1,0 +1,169 @@
+# For the benefit of emacs users: -*- shell-script -*-
+#
+#  _ _____ _     _            _
+# (_)___ /| |__ | | ___   ___| | _____
+# | | |_ \| '_ \| |/ _ \ / __| |/ / __|
+# | |___) | |_) | | (_) | (__|   <\__ \
+# |_|____/|_.__/|_|\___/ \___|_|\_\___/
+
+align=center
+separator=false
+color=#ffffff
+separator_block_width=5
+markup=pango
+
+# [mediaplayer]
+# command=playerctl metadata --format "{{ artist }} - {{ title }}"
+# interval=2
+# label= 
+# color=#a9e185
+
+# [arch-update]
+# command=checkupdates | wc -l
+# interval=once
+# label= 
+# color=#1793d1
+
+# [battery]
+# interval=2
+# color=#ff79c6
+
+[battery2]
+command=~/.config/i3blocks/blocks/battery2/battery2
+markup=pango
+interval=30
+
+[wifi]
+command=iwgetid -r | tr '\n' ' ' && grep $(iwgetid -m | awk '{ printf "%s", $1 }') /proc/net/wireless | awk '{ printf "%i%\n", int($3 * 100 / 70) }'
+instance=wlp11s0f3u1
+interval=5
+label= 
+color=#ffb86c
+
+# [new-vpn]
+# command=~/.config/i3blocks/blocks/openvpn/openvpn
+# interval=1
+# label=<span color="#8be9fd"> </span>
+
+# [home]
+# command=df -h /home | awk 'FNR==2{print $4}'
+# interval=3
+# label=<span color="#a9e185"> </span>
+
+# [root]
+# command=df -h / | awk 'FNR==2{print $4}'
+# interval=3
+# label= 
+# color=#ff79c6
+
+# [gpu-load]
+# command=~/.config/i3blocks/blocks/gpu-load/gpu-load | awk 'FNR==1{ printf "%s %s\n", $1, $2 }'
+# label= 
+# interval=2
+# color=#ffb86c
+#
+# [gpu-temperature]
+# command=~/.config/i3blocks/blocks/temperature/temperature
+# interval=2
+# SENSOR_CHIP="k10temp-pci-00c3"
+# # label= 
+# label=🌡 
+# color=#ffb86c
+
+[cpu_usage]
+command=~/.config/i3blocks/blocks/cpu_usage/cpu_usage
+interval=2
+label= 
+# label=🎞 
+color=#8be9fd
+
+# [cpu-temperature]
+# command=~/.config/i3blocks/blocks/temperature/temperature
+# interval=2
+# # SENSOR_CHIP="jc42-i2c-0-1a"
+# # label= 
+# label=🌡 
+# color=#8be9fd
+
+[memory]
+command=free -h --si | awk 'FNR==2{ print $0 }' | awk '{ print $7 }'
+interval=2
+label= 
+color=#a9e185
+
+# [volume]
+# command=pulseaudio-ctl full-status | awk '{ printf "%i%\n", $1 }'
+# interval=2
+# label= 
+# color=#ff79c6
+
+[volume-pulseaudio]
+command=~/.config/i3blocks/blocks/volume-pulseaudio/volume-pulseaudio
+interval=once
+signal=1
+#MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
+##exposed format variables: ${SYMB}, ${VOL}, ${INDEX}, ${NAME}
+#LONG_FORMAT="${SYMB} ${VOL}% [${INDEX}:${NAME}]"
+LONG_FORMAT="${SYMB} ${VOL}%"
+SHORT_FORMAT="${SYMB} ${VOL}%"
+AUDIO_HIGH_SYMBOL=🔊
+AUDIO_MED_THRESH=50
+AUDIO_MED_SYMBOL=🔉
+AUDIO_LOW_THRESH=0
+AUDIO_LOW_SYMBOL=🔈
+AUDIO_DELTA=5
+DEFAULT_COLOR="#ff79c6"
+MUTED_COLOR="#a0a0a0"
+#USE_ALSA_NAME=0
+#USE_DESCRIPTION=0
+## SUBSCRIBE=1 requires interval=persist and always uses LONG_FORMAT
+#SUBSCRIBE=0
+
+[backlight]
+command=~/.config/i3blocks/blocks/backlight/backlight | awk '{ printf "%i%\n", $1 }'
+label=☀
+interval=20
+#STEP_SIZE=5
+#USE_SUDO=0
+
+[time]
+command=date '+%H:%M'
+interval=1
+# label=🕘 
+label= 
+color=#ffb86c
+
+[date]
+command=date '+%a, %b %0e'
+interval=60
+label= 
+color=#8be9fd
+
+[monitors]
+command=~/.config/i3blocks/blocks/monitor_manager/monitor_manager
+interval=once
+#SHOW_ON_OFF=1
+#SHOW_NAMES=1
+#SHOW_PRIMARY=1
+#SHOW_MODE=1
+#SHOW_BLANKED=1
+#SHOW_DUPLICATE=1
+#SHOW_ROTATION=1
+#SHOW_REFLECTION=1
+#SHOW_BRIGHTNESS=1
+#SHOW_BRIGHTNESS_VALUE=0
+#SHOW_UP_DOWN=1
+FONT_FAMILY=Fira Code Retina
+# FONT_SIZE=11
+#CLOSE_TO_BOUNDARY_BUFFER=20
+
+# [shutdown_menu]
+# full_text=⏻ 
+# color=#a9e185
+# command=~/.config/i3blocks/blocks/shutdown_menu/shutdown_menu
+# ROFI_TEXT=Menu:
+# ROFI_OPTIONS=-no-config -location 3 -yoffset 29 -width 15 -xoffset 5 -bw 0 -border 0 -theme ~/.config/rofi/menu.rasi
+# ENABLE_CONFIRMATIONS=true
+# LAUNCHER=rofi
+# LOCKSCRIPT=betterlockscreen -l dimblur

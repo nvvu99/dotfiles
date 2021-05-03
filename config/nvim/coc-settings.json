@@ -1,0 +1,43 @@
+{
+  "html.autoClosingTags": true,
+  "html.filetypes": [
+    "html",
+    "handlebars",
+    "htmldjango",
+    "twig",
+    "xml",
+    "php",
+    "javascript",
+    "javascriptreact",
+    "blade"
+  ],
+  "git.addGBlameToVirtualText": true,
+  "git.virtualTextPrefix": "<<>>  ",
+  "emmet.includeLanguages": {
+    "blade": "html",
+    "php": "html",
+    "javascript": "html",
+    "javascriptreact": "html"
+  },
+  "intelephense.progress.enable": false,
+  "php-cs-fixer.rules": "@PSR12,@Symfony",
+  "php-cs-fixer.enableFormatProvider": true,
+  "cSpell.diagnosticLevel": "Hint",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "html",
+    "css",
+    "scss",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "graphql",
+    "handlebars",
+    "markdown",
+    "yaml"
+  ],
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*"
+  }
+}

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+nvim +'Calendar -first_day=monday'

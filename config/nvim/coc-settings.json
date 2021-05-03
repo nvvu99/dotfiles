@@ -1,0 +1,15 @@
+{
+  "html.autoClosingTags": true,
+  "html.filetypes": [
+    "html",
+    "handlebars",
+    "htmldjango",
+    "twig",
+    "xml",
+    "javascript"
+  ],
+  "git.addGBlameToVirtualText": true,
+  "git.virtualTextPrefix": "<<>>  ",
+  "omnisharp.path": "~/.omnisharp/omnisharp-roslyn-mono/OmniSharp.exe",
+  "omnisharp.debug.server": false
+}

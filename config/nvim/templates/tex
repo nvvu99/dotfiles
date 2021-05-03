@@ -1,0 +1,16 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english,vietnamese]{babel}
+\setlength{\parskip}{1em}
+
+\title{TODO}
+\date{TODO}
+\author{Van Vu Nguyen}
+
+\begin{document}
+
+\maketitle
+
+TODO
+
+\end{document}

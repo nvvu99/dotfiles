@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# xss-lock -q -- betterlockscreen -l dimblur &
+kquitapp5 plasmashell
+# picom -b &
+nm-applet &
+# xfce4-power-manager &
+clipit &
+megasync &
+pcloud &
+# guake &
+fcitx5 &
+workrave &
+java -jar /opt/xdman/xdman.jar -m &
+GTK_USE_PORTAL=1 &
+sleep 60
+nitrogen --restore &
+conky -c ~/.config/conky/conkyrc &

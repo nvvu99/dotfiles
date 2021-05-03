@@ -1,0 +1,9 @@
+ofi.modi: drun,window
+rofi.lines: 8
+rofi.columns: 3
+rofi.width: 80
+rofi.drun-icon-theme: Pop
+rofi.show-icons: true
+rofi.sidebar-mode: true
+rofi.m: -4
+rofi.theme: dracula

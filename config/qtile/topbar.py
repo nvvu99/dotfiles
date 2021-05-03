@@ -19,7 +19,7 @@ def right_separator(**config):
 
 
 def logout():
-    qtile.cmd_spawn("arcolinux-logout")
+    qtile.cmd_spawn("archlinux-logout")
 
 
 topbar = bar.Bar(

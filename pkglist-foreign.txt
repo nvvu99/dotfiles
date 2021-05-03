@@ -1,14 +1,11 @@
 clipit
-dumptorrent
 epub-thumbnailer-git
-figma-linux
-heroku-cli
-hibernator
 lazydocker
 mkinitcpio-openswap
 montserrat-ttf
 mycli
 networkmanager-dmenu-git
+postman-bin
 pygments-base16
 rofi-bluetooth-git
 update-grub

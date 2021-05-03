@@ -54,7 +54,7 @@ mouse = [
         lazy.window.set_size_floating(),
         start=lazy.window.get_size(),
     ),
-    Click([], "Button2", lazy.window.bring_to_front()),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None

@@ -2,7 +2,7 @@ local function progress()
     local cur = vim.fn.line('.')
     local total = vim.fn.line('$')
 
-    return math.floor(cur / total * 100) .. '%%/' .. total
+    return cur .. '/' .. total .. ' (' .. math.floor(cur / total * 100) .. '%%)'
 end
 
 return {
@@ -13,6 +13,7 @@ return {
         section_separators = { left = '', right = '' },
         disabled_filetypes = {},
         always_divide_middle = true,
+        globalstatus = true,
     },
     sections = {
         lualine_a = { 'mode' },

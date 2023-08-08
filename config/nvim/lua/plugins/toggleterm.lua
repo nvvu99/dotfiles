@@ -6,7 +6,7 @@ local colors = {
 return {
     -- size can be a number or function which is passed the current terminal
     size = 20,
-    open_mapping = [[<c-\>]],
+    open_mapping = [[<A-\>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
     highlights = {

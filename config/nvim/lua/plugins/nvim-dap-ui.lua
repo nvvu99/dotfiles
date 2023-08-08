@@ -1,14 +1,5 @@
 return function()
-    local dap, dapui = require('dap'), require('dapui')
-    dap.listeners.after.event_initialized['dapui_config'] = function()
-        dapui.open()
-    end
-    dap.listeners.before.event_terminated['dapui_config'] = function()
-        dapui.close()
-    end
-    dap.listeners.before.event_exited['dapui_config'] = function()
-        dapui.close()
-    end
+    local dapui = require('dapui')
 
     dapui.setup({
         icons = { expanded = '▾', collapsed = '▸' },
@@ -65,4 +56,6 @@ return function()
             max_type_length = nil, -- Can be integer or nil.
         },
     })
+
+    require('dap-tab').setup()
 end

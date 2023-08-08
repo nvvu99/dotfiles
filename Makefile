@@ -1,4 +1,4 @@
-DOTFILES=${HOME}/Projects/dotfiles
+DOTFILES=${HOME}/.dotfiles
 ZSH=${HOME}/.oh-my-zsh
 ZSH_CUSTOM=${ZSH}/custom
 
@@ -19,7 +19,7 @@ i3:
 	ln -s ${DOTFILES}/config/i3 ~/.config/i3
 	if test -d '${HOME}/.config/i3blocks' ; then mv -f ~/.config/i3blocks ~/.config/i3blocks.bak; fi
 	ln -s ${DOTFILES}/config/i3blocks ~/.config/i3blocks
-	git clone https://github.com/vivien/i3blocks-contrib.git ~/.config/i3blocks/blocks
+	git clone https://github.com/vivien/i3blocks-contrib.git --depth 1 ~/.config/i3blocks/blocks
 
 kitty:
 	if test -d '${HOME}/.config/kitty' ; then mv -f ~/.config/kitty ~/.config/kitty.bak; fi
@@ -60,7 +60,7 @@ zathura:
 	ln -s ${DOTFILES}/config/zathura ~/.config/zathura
 
 zsh:
-	if test ! -d '${ZSH}' ; then git clone https://github.com/ohmyzsh/ohmyzsh.git ${ZSH}; fi
+	if test ! -d '${ZSH}' ; then git clone https://github.com/ohmyzsh/ohmyzsh.git --depth 1 ${ZSH}; fi
 	if test -f '${HOME}/.zshrc' ; then mv -f ~/.zshrc ~/.zshrc.bak; fi
 	if test -f '${HOME}/.p10k.zsh' ; then mv -f ~/.p10k.zsh ~/.p10k.zsh.bak; fi
 	if test -f '${HOME}/.bashrc' ; then mv -f ~/.bashrc ~/.bashrc.bak; fi
@@ -69,17 +69,17 @@ zsh:
 	ln -s ${DOTFILES}/p10k.zsh ~/.p10k.zsh
 	ln -s ${DOTFILES}/bashrc ~/.bashrc
 	ln -s ${DOTFILES}/bash_profile ~/.bash_profile
-	if test ! -d '${ZSH_CUSTOM}/plugins/zsh-vim-mode' ; then git clone https://github.com/softmoth/zsh-vim-mode.git ${ZSH_CUSTOM}/plugins/zsh-vim-mode; fi
-	if test ! -d '${ZSH_CUSTOM}/plugins/zsh-autosuggestions' ; then git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM}/plugins/zsh-autosuggestions; fi
-	if test ! -d '${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting' ; then git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting; fi
+	if test ! -d '${ZSH_CUSTOM}/plugins/zsh-vim-mode' ; then git clone https://github.com/softmoth/zsh-vim-mode.git --depth 1 ${ZSH_CUSTOM}/plugins/zsh-vim-mode; fi
+	if test ! -d '${ZSH_CUSTOM}/plugins/zsh-autosuggestions' ; then git clone https://github.com/zsh-users/zsh-autosuggestions.git --depth 1 ${ZSH_CUSTOM}/plugins/zsh-autosuggestions; fi
+	if test ! -d '${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting' ; then git clone https://github.com/zsh-users/zsh-syntax-highlighting.git --depth 1 ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting; fi
 	if test -d '${HOME}/.powerlevel10k' ; then mv -f ~/.powerlevel10k ~/.powerlevel10k.bak; fi
-	git clone https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+	git clone https://github.com/romkatv/powerlevel10k.git --depth 1 ~/.powerlevel10k
 	if test ! -f '${ZSH_CUSTOM}/themes/powerlevel10k.zsh-theme' ; then ln -s ~/.powerlevel10k/powerlevel10k.zsh-theme ${ZSH_CUSTOM}/themes/powerlevel10k.zsh-theme ; fi
 
 packages:
 	# sudo pacman -S --needed yay --noconfirm
 	yay -S --needed $$(< pkglist-native.txt) $$(< pkglist-foreign.txt)
 
-all: cmus conky dunst i3 kitty neofetch nvim picom qtile rofi vifm vimiv zathura zsh 
+all: cmus conky dunst i3 kitty neofetch nvim picom qtile rofi vifm vimiv zathura zsh
 
-.PHONY: all cmus conky dunst i3 kitty neofetch nvim picom qtile rofi vifm vimiv zathura zsh 
+.PHONY: all cmus conky dunst i3 kitty neofetch nvim picom qtile rofi vifm vimiv zathura zsh

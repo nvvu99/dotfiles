@@ -1,144 +1,148 @@
+local set_keymap = vim.keymap.set
+local del_keymap = vim.keymap.del
+
 -- General
-nmap(';', ':')
-vmap(';', ':')
+set_keymap({ 'n', 'v' }, ';', ':')
 -- Escape in command mode
-cmap('jj', '<C-c>')
+set_keymap('c', 'jj', '<C-c>')
 -- Escape in terminal mode
-tmap('<C-\\>', '<C-\\><C-n>')
+set_keymap('t', '<C-\\>', '<C-\\><C-n>')
 -- Escape in visual mode
-vmap('<space><space>', '<ESC>')
+set_keymap('x', '<space><space>', '<ESC>')
 -- Easy align in visual mode
-xmap('ga', '<Plug>(EasyAlign)')
+set_keymap('x', 'ga', '<Plug>(EasyAlign)')
 -- Easy align in normal mode
-nmap('ga', '<Plug>(EasyAlign)')
+set_keymap('n', 'ga', '<Plug>(EasyAlign)')
 -- Scroll the viewport faster
--- nmap('<Cr>', '3<C-e>')
--- nmap("'", '3<C-y>')
+-- set_keymap('n', '<Cr>', '3<C-e>')
+-- set_keymap('n', "'", '3<C-y>')
 -- Copy from cursor to end of line
-nmap('Y', 'y$')
+set_keymap('n', 'Y', 'y$')
 -- Toggle fold
-nmap('<Space>', 'za')
+set_keymap('n', '<Space>', 'za')
 -- Easier indenting of code blocks
-vmap('<', '<gv')
-vmap('>', '>gv')
+set_keymap('x', '<', '<gv')
+set_keymap('x', '>', '>gv')
 -- Copy absolute file path
-nmap('cpa', ":let @+ = expand('%:p')<cr>")
+set_keymap('n', 'cpa', ":let @+ = expand('%:p')<cr>")
 -- Copy relative file path
-nmap('cpr', ":let @+ = expand('%:.')<cr>")
+set_keymap('n', 'cpr', ":let @+ = expand('%:.')<cr>")
 
 -- Switching tab
 -- Next tab
-nmap('<S-Tab>', ':tabprevious<Cr>')
-nmap('<Tab>', ':tabnext<Cr>')
+set_keymap('n', '<S-Tab>', ':tabprevious<Cr>')
+set_keymap('n', '<Tab>', ':tabnext<Cr>')
 -- Better window navigation
-nmap('<C-h>', '<C-w>h')
-nmap('<C-j>', '<C-w>j')
-nmap('<C-k>', '<C-w>k')
-nmap('<C-l>', '<C-w>l')
+set_keymap('n', '<C-h>', '<C-w>h')
+set_keymap('n', '<C-j>', '<C-w>j')
+set_keymap('n', '<C-k>', '<C-w>k')
+set_keymap('n', '<C-l>', '<C-w>l')
 
 -- Resize buffer
-nmap('<Up>', '<Cmd> resize -3<Cr>')
-nmap('<Down>', '<Cmd> resize +3<Cr>')
-nmap('<Left>', '<Cmd> vertical resize +5<Cr>')
-nmap('<Right>', '<Cmd> vertical resize -5<Cr>')
+set_keymap('n', '<Up>', '<Cmd> resize -3<Cr>')
+set_keymap('n', '<Down>', '<Cmd> resize +3<Cr>')
+set_keymap('n', '<Left>', '<Cmd> vertical resize +5<Cr>')
+set_keymap('n', '<Right>', '<Cmd> vertical resize -5<Cr>')
 
 -- View Management
 -- Toggle NvimTree
-nmap('<Leader>m', ':NvimTreeToggle<Cr>')
+set_keymap('n', '<Leader>m', ':NvimTreeToggle<Cr>')
 -- Toggle Symbols outline
-nmap('<Leader>.', ':SymbolsOutline<Cr>')
+set_keymap('n', '<Leader>.', ':SymbolsOutline<Cr>')
 -- Create vsplit
-nmap('<Leader>\\', ':vsplit<Cr>')
+set_keymap('n', '<Leader>\\', ':vsplit<Cr>')
 -- Create hsplit
-nmap('<Leader>-', ':split<Cr>')
+set_keymap('n', '<Leader>-', ':split<Cr>')
 -- Only window
-nmap('<Leader>o', ':only<Cr>')
+set_keymap('n', '<Leader>o', ':only<Cr>')
 -- Close the current buffer
-nmap('<Leader><S-c>', ':%close<Cr>')
+set_keymap('n', '<Leader><S-c>', ':%close<Cr>')
 -- Delete the current buffer
-nmap('<Leader>x', ':bdelete<Cr>')
+set_keymap('n', '<Leader>x', ':bdelete<Cr>')
 -- Delete the current buffer
-nmap('<Leader><S-x>', ':bdelete!<Cr>')
--- Force close all buffers
-nmap('<Leader>z', ':%bdelete<Cr>')
+set_keymap('n', '<Leader><S-x>', ':bdelete!<Cr>')
 -- Close all buffers
-nmap('<Leader><S-z>', ':%bdelete!<Cr>')
+set_keymap('n', '<Leader>z', ':%bdelete<Cr>')
+-- Force close all buffers
+set_keymap('n', '<Leader><S-z>', ':%bdelete!<Cr>')
 
 -- Color picker
-nmap('<C-c>', '<Cmd>CccPick<Cr>')
+set_keymap('n', '<C-c>', '<Cmd>CccPick<Cr>')
 
--- FzfLua
-nmap('\\\\', ':FzfLua files<Cr>')
-nmap('<Leader>f', ':FzfLua live_grep_native<Cr>')
-nmap('<Leader>l', ':FzfLua blines<Cr>')
-nmap('<Leader>b', ':FzfLua buffers<Cr>')
-nmap('<Leader>c', ':FzfLua git_bcommits<Cr>')
-nmap('<Leader>g', ':lua toggle_lazygit()<Cr>')
-nmap('<Leader>d', ':lua toggle_lazydocker()<Cr>')
-nmap('gD', ':FzfLua lsp_declarations<Cr>')
-nmap('gd', ':FzfLua lsp_definitions<Cr>')
-nmap('gt', ':FzfLua lsp_typedefs<Cr>')
-nmap('gi', ':FzfLua lsp_implementations<Cr>')
-nmap('gr', ':FzfLua lsp_references<Cr>')
+-- Telescope
+local telescope_builtin = require('telescope.builtin')
+set_keymap('n', '<Leader>n', telescope_builtin.find_files)
+set_keymap('n', '<Leader>f', telescope_builtin.live_grep)
+set_keymap('n', '<Leader>b', telescope_builtin.buffers)
+set_keymap('n', '<Leader>c', telescope_builtin.git_bcommits)
+set_keymap('n', 'gd', telescope_builtin.lsp_definitions)
+set_keymap('n', 'gt', telescope_builtin.lsp_type_definitions)
+set_keymap('n', 'gi', telescope_builtin.lsp_implementations)
+set_keymap('n', 'gr', telescope_builtin.lsp_references)
+
+-- ToggleTerm
+set_keymap('n', '<Leader>g', toggle_lazygit)
+set_keymap('t', '<Leader>g', toggle_lazygit)
+set_keymap('n', '<Leader>d', toggle_lazydocker)
+set_keymap('t', '<Leader>d', toggle_lazydocker)
 
 -- Nvim DAP
-nmap('<F1>', "<Cmd> lua require('dap').step_back()<Cr>")
-nmap('<F2>', "<Cmd> lua require('dap').step_over()<Cr>")
-nmap('<F3>', "<Cmd> lua require('dap').step_into()<Cr>")
-nmap('<F4>', "<Cmd> lua require('dap').step_out()<Cr>")
-nmap('<F5>', "<Cmd> lua require('dap').continue()<Cr>")
-nmap('<F6>', '<Cmd> lua terminate_dap()<Cr>')
-nmap('<F9>', "<Cmd> lua require('dap').run_to_cursor()<Cr>")
-nmap('<F10>', "<Cmd> lua require('dap').toggle_breakpoint()<Cr>")
-nmap('<F11>', "<Cmd> lua require('dap').clear_breakpoints()<Cr>")
+local dap = require('dap')
+set_keymap('n', '<F1>', dap.step_back)
+set_keymap('n', '<F2>', dap.step_over)
+set_keymap('n', '<F3>', dap.step_into)
+set_keymap('n', '<F4>', dap.step_out)
+set_keymap('n', '<F5>', dap.continue)
+set_keymap('n', '<F6>', terminate_dap)
+set_keymap('n', '<F9>', dap.run_to_cursor)
+set_keymap('n', '<F10>', dap.toggle_breakpoint)
+set_keymap('n', '<F11>', dap.clear_breakpoints)
 
 -- Nvim ufo
-nmap('zR', "<Cmd> lua require('ufo').openAllFolds()<Cr>")
-nmap('zM', "<Cmd> lua require('ufo').closeAllFolds()<Cr>")
+local ufo = require('ufo')
+set_keymap('n', 'zR', ufo.openAllFolds)
+set_keymap('n', 'zM', ufo.closeAllFolds)
 
 -- Rest nvim
-nmap('<Leader>r', '<Plug>RestNvim')
-nmap('<Leader><leader>r', '<Plug>RestNvimLast')
+set_keymap('n', '<Leader>r', '<Plug>RestNvim')
+set_keymap('n', '<Leader><leader>r', '<Plug>RestNvimLast')
 
 -- LSP
-nmap('K', '<Cmd> lua vim.lsp.buf.hover()<Cr>')
-
--- Reverse join
-nmap('<Leader>J', "<Cmd>lua require('trevj').format_at_cursor()<Cr>")
+set_keymap('n', 'K', vim.lsp.buf.hover)
 
 -- ISwap
-nmap('<Leader>s', ':ISwapWith<Cr>')
-
--- Renamer
-imap('<F2>', '<Cmd>lua require("renamer").rename()<Cr>')
-nmap('<Leader>rn', '<Cmd>lua require("renamer").rename()<Cr>')
-vmap('<Leader>rn', '<Cmd>lua require("renamer").rename()<Cr>')
+set_keymap('n', '<Leader>s', ':ISwapWith<Cr>')
 
 -- Hop
-map(
+set_keymap(
     '',
     'f',
     "<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
 )
-map(
+set_keymap(
     '',
     'F',
     "<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
 )
-map(
+set_keymap(
     '',
     't',
     "<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
 )
-map(
+set_keymap(
     '',
     'T',
     "<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>"
 )
-nmap('<Leader><Leader>w', ':HopWord<Cr>')
-nmap('<Leader><Leader>c', ':HopChar1<Cr>')
+set_keymap('n', '<Leader><Leader>w', ':HopWord<Cr>')
+set_keymap('n', '<Leader><Leader>c', ':HopChar1<Cr>')
 
 -- Renamer
-imap('<F2>', '<cmd>lua require("renamer").rename()<Cr>')
-nmap('<leader>rr', '<cmd>lua require("renamer").rename()<Cr>')
-vmap('<leader>rr', ':lua require("renamer").rename()<Cr>')
+set_keymap('i', '<F2>', require('renamer').rename)
+set_keymap({ 'n', 'x' }, '<leader>rr', require('renamer').rename)
+
+-- Nvim spider
+-- set_keymap({ 'n', 'o', 'x' }, 'w', "<cmd>lua require('spider').motion('w')<CR>", { desc = 'Spider-w' })
+-- set_keymap({ 'n', 'o', 'x' }, 'e', "<cmd>lua require('spider').motion('e')<CR>", { desc = 'Spider-e' })
+-- set_keymap({ 'n', 'o', 'x' }, 'b', "<cmd>lua require('spider').motion('b')<CR>", { desc = 'Spider-b' })
+-- set_keymap({ 'n', 'o', 'x' }, 'ge', "<cmd>lua require('spider').motion('ge')<CR>", { desc = 'Spider-ge' })

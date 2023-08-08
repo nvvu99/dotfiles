@@ -17,14 +17,6 @@ fi
 ### "vim" as manpager
 # export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
 
-### "nvim" as manpager
-export MANPAGER="nvim +Man!"
-
-export EDITOR=nvim
-
-export FZF_DEFAULT_OPTS='--layout=default --info inline --bind ctrl-a:select-all,ctrl-d:deselect-all,tab:up,shift-tab:down,alt-f:toggle,ctrl-p:toggle-preview'
-export FZF_DEFAULT_COMMAND='ag -g "" --hidden'
-# Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -143,3 +135,6 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[[ ! -f ~/.projects ]] || source ~/.projects
+[[ ! -f ~/.tools ]] || source ~/.tools

@@ -40,3 +40,17 @@ autocmd('VimEnter', {
     group = titlestring,
     command = "let &titlestring=fnamemodify(getcwd(), ':t')",
 })
+
+local barbecue_updater = augroup('barbecue.updater', {})
+autocmd({
+    'WinResized',
+    'BufWinEnter',
+    'CursorHold',
+    'InsertLeave',
+    'BufModifiedSet',
+}, {
+    group = barbecue_updater,
+    callback = function()
+        require('barbecue.ui').update()
+    end,
+})

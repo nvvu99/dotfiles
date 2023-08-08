@@ -5,6 +5,12 @@ return function()
     local lspkind = require('lspkind')
     local luasnip = require('luasnip')
 
+    -- require('copilot').setup({
+    --     suggestion = { enabled = false },
+    --     panel = { enabled = false },
+    -- })
+    -- require('copilot_cmp').setup()
+
     local buffer_source = {
         name = 'buffer',
         option = {
@@ -54,6 +60,7 @@ return function()
             ['<CR>'] = cmp.mapping.confirm(),
         }),
         sources = cmp.config.sources({
+            { name = 'copilot' },
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
         }, {
@@ -64,7 +71,9 @@ return function()
             buffer_source,
         }),
         sorting = {
+            priority_weight = 2,
             comparators = {
+                -- require('copilot_cmp.comparators').prioritize,
                 cmp.config.compare.offset,
                 cmp.config.compare.exact,
                 cmp.config.compare.score,
@@ -108,6 +117,7 @@ return function()
                     Event = '',
                     Operator = '',
                     TypeParameter = '𝙏',
+                    Copilot = '',
                 },
             }),
         },

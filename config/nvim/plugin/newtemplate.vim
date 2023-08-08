@@ -7,7 +7,6 @@ function! newtemplate#new(filetype, vertical) abort
   endif
   if a:vertical | vnew | else | new | endif
   execute 'setf ' . a:filetype
-  call NaturalVerticalDrawer()
 endfunction
 
 

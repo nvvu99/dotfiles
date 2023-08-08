@@ -16,7 +16,7 @@ opt.wildignore:append('*.orig')
 opt.wildignore:append('*.sw?')
 opt.wildignore:append('.DS_Store')
 opt.wildignore:append('.git,.hg')
-opt.updatetime = 1000
+opt.updatetime = 500
 
 -- Search
 opt.ignorecase = true
@@ -40,7 +40,7 @@ opt.background = 'dark'
 opt.termguicolors = true
 opt.foldmethod = 'manual'
 -- opt.foldexpr = 'nvim_treesitter#foldexpr()'
--- opt.foldmarker = "{,}"
+-- opt.foldmarker = '{,}'
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldcolumn = '1'
@@ -62,6 +62,7 @@ opt.list = true
 opt.listchars:append('space:⋅')
 opt.listchars:append('eol:↴')
 opt.title = true
+opt.exrc = true
 
 vim.cmd([[
 let base16colorspace=256

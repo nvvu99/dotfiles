@@ -59,6 +59,10 @@ zathura:
 	if test -d '${HOME}/.config/zathura' ; then mv -f ~/.config/zathura ~/.config/zathura.bak; fi
 	ln -s ${DOTFILES}/config/zathura ~/.config/zathura
 
+tmux:
+	if test -d '${HOME}/.config/tmux' ; then mv -f ~/.config/tmux ~/.config/tmux.bak; fi
+	ln -s ${DOTFILES}/config/tmux ~/.config/tmux
+
 zsh:
 	if test ! -d '${ZSH}' ; then git clone https://github.com/ohmyzsh/ohmyzsh.git --depth 1 ${ZSH}; fi
 	if test -f '${HOME}/.zshrc' ; then mv -f ~/.zshrc ~/.zshrc.bak; fi
@@ -80,6 +84,6 @@ packages:
 	# sudo pacman -S --needed yay --noconfirm
 	yay -S --needed $$(< pkglist-native.txt) $$(< pkglist-foreign.txt)
 
-all: cmus conky dunst i3 kitty neofetch nvim picom qtile rofi vifm vimiv zathura zsh
+all: cmus conky dunst i3 kitty neofetch nvim picom qtile rofi vifm vimiv zathura zsh mason
 
 .PHONY: all cmus conky dunst i3 kitty neofetch nvim picom qtile rofi vifm vimiv zathura zsh

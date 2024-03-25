@@ -47,6 +47,22 @@ require('lazy').setup({
             config = require('plugins.nvim-cmp'),
         },
         'windwp/nvim-ts-autotag',
+        {
+            'Exafunction/codeium.nvim',
+            dependencies = {
+                'nvim-lua/plenary.nvim',
+                'hrsh7th/nvim-cmp',
+            },
+            config = require('plugins.codeium'),
+        },
+        {
+            'dpayne/CodeGPT.nvim',
+            dependencies = {
+                'nvim-lua/plenary.nvim',
+                'MunifTanjim/nui.nvim',
+            },
+            config = require('plugins.codegpt'),
+        },
     },
 
     -- Syntax

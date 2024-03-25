@@ -60,7 +60,7 @@ return function()
             ['<CR>'] = cmp.mapping.confirm(),
         }),
         sources = cmp.config.sources({
-            { name = 'copilot' },
+            { name = 'codeium' },
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
         }, {
@@ -118,6 +118,7 @@ return function()
                     Operator = '',
                     TypeParameter = '𝙏',
                     Copilot = '',
+                    Codeium = '',
                 },
             }),
         },

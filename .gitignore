@@ -1,3 +1,5 @@
 config/nvim/plugin/packer_compiled.lua
 
 config/tmux/plugins
+
+codegpt_openai_api_key.txt

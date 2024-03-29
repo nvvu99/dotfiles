@@ -2,7 +2,8 @@ local wezterm = require('wezterm')
 local action = wezterm.action
 
 return {
-    font = wezterm.font('Fira Code Retina'),
+    font = wezterm.font('Fira Code Medium'),
+    font_size = 11,
     color_scheme = 'Dracula (Official)',
 
     window_decorations = 'RESIZE',

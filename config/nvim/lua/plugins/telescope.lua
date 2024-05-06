@@ -31,5 +31,7 @@ return function()
         },
     })
 
+    telescope.load_extension('egrepify')
     telescope.load_extension('fzf')
+    telescope.load_extension('workspaces')
 end

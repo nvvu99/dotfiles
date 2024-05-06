@@ -8,16 +8,16 @@ local get_python_path = function()
 end
 
 return function()
-    -- require('dap.ext.vscode').load_launchjs('')
     local vim_fn = vim.fn
     local dap = require('dap')
     local debug_adapters_path = vim_fn.stdpath('config') .. '/debug-adapters'
 
+    dap.defaults.fallback.terminar_win_cmd = 'tabnew'
+
     -- PHP
     dap.adapters.php = {
         type = 'executable',
-        command = 'node',
-        args = { debug_adapters_path .. '/vscode-php-debug/out/phpDebug.js' },
+        command = 'php-debug-adapter',
     }
     dap.configurations.php = {
         {
@@ -37,8 +37,7 @@ return function()
     -- Python
     dap.adapters.python = {
         type = 'executable',
-        command = get_python_path(),
-        args = { '-m', 'debugpy.adapter' },
+        command = 'debugpy-adapter',
     }
     dap.configurations.python = {
         {

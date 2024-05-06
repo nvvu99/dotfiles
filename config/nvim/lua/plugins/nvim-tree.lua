@@ -5,4 +5,7 @@ return {
     filters = {
         dotfiles = false,
     },
+    update_focused_file = {
+        update_root = true,
+    },
 }

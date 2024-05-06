@@ -1,4 +1,14 @@
 return function()
+    require('neodev').setup({
+        override = function(root_dir, library)
+            if root_dir:find('dotfiles', 1, true) == 1 then
+                library.enabled = true
+                library.plugins = true
+            end
+        end,
+    })
+    require('neoconf').setup()
+
     local lspconfig = require('lspconfig')
     local lsp = vim.lsp
     lsp.handlers['textDocument/hover'] = lsp.with(lsp.handlers.hover, {
@@ -47,45 +57,13 @@ return function()
         },
         handlers = {
             function(server_name)
-                lspconfig[server_name].setup({
+                local default_lsp_settings = {
                     capabilities = capabilities,
                     on_attach = on_client_attach,
-                })
-            end,
-            ['emmet_language_server'] = function()
-                lspconfig.emmet_language_server.setup({
-                    capabilities = capabilities,
-                    on_attach = on_client_attach,
-                    filetypes = {
-                        'astro',
-                        'eruby',
-                        'html',
-                        'htmldjango',
-                        'javascriptreact',
-                        'typescriptreact',
-                        'css',
-                        'less',
-                        'sass',
-                        'scss',
-                        'svelte',
-                        'pug',
-                        'vue',
-                        'php',
-                        'blade',
-                    },
-                })
-            end,
-            ['jsonls'] = function()
-                lspconfig.jsonls.setup({
-                    capabilities = capabilities,
-                    on_attach = on_client_attach,
-                    settings = {
-                        json = {
-                            schemas = require('schemastore').json.schemas(),
-                            validate = { enable = true },
-                        },
-                    },
-                })
+                }
+                local server_settings = require('lsp_settings')[server_name]
+
+                lspconfig[server_name].setup(merge_tables(default_lsp_settings, server_settings))
             end,
         },
     })

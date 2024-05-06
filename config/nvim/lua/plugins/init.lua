@@ -10,6 +10,8 @@ require('lazy').setup({
                 'williamboman/mason-lspconfig.nvim',
                 'neovim/nvim-lspconfig',
                 'b0o/schemastore.nvim',
+                'folke/neodev.nvim',
+                'folke/neoconf.nvim',
             },
             config = require('plugins.mason'),
         },
@@ -93,6 +95,10 @@ require('lazy').setup({
             build = 'make',
         },
         {
+            'fdschmidt93/telescope-egrepify.nvim',
+            dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+        },
+        {
             'wincent/loupe',
             config = require('plugins.loupe'),
         },
@@ -173,7 +179,10 @@ require('lazy').setup({
             config = require('plugins.nvim-gomove'),
         },
         'romainl/vim-cool',
-        'jiangmiao/auto-pairs',
+        {
+            'jiangmiao/auto-pairs',
+            config = require('plugins.auto-pairs'),
+        },
         {
             'mhartington/formatter.nvim',
             config = require('plugins.formatter'),
@@ -247,12 +256,20 @@ require('lazy').setup({
         },
         { 'numtostr/BufOnly.nvim', cmd = 'BufOnly' },
         {
+            'niuiic/translate.nvim',
+            dependencies = { 'niuiic/core.nvim' },
+        },
+    },
+
+    -- Workspaces
+    {
+        {
             'rmagatti/auto-session',
             config = require('plugins.auto-session'),
         },
         {
-            'niuiic/translate.nvim',
-            dependencies = { 'niuiic/core.nvim' },
+            'natecraddock/workspaces.nvim',
+            config = require('plugins.workspaces'),
         },
     },
 })

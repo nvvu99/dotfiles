@@ -2,6 +2,7 @@ vim.g.netrw_liststyle = 3
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ','
 
+require('utils')
 require('bootstrap')
 require('plugins')
 require('custom_tools')

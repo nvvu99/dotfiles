@@ -1,5 +1,4 @@
 local set_keymap = vim.keymap.set
-local del_keymap = vim.keymap.del
 
 -- General
 set_keymap({ 'n', 'v' }, ';', ':')
@@ -13,9 +12,6 @@ set_keymap('x', '<space><space>', '<ESC>')
 set_keymap('x', 'ga', '<Plug>(EasyAlign)')
 -- Easy align in normal mode
 set_keymap('n', 'ga', '<Plug>(EasyAlign)')
--- Scroll the viewport faster
--- set_keymap('n', '<Cr>', '3<C-e>')
--- set_keymap('n', "'", '3<C-y>')
 -- Copy from cursor to end of line
 set_keymap('n', 'Y', 'y$')
 -- Toggle fold
@@ -71,10 +67,13 @@ set_keymap('n', '<C-c>', '<Cmd>CccPick<Cr>')
 
 -- Telescope
 local telescope_builtin = require('telescope.builtin')
+local telescope_extensions = require('telescope').extensions
 set_keymap('n', '<Leader>n', telescope_builtin.find_files)
-set_keymap('n', '<Leader>f', telescope_builtin.live_grep)
+-- set_keymap('n', '<Leader>f', telescope_builtin.live_grep)
+set_keymap('n', '<Leader>f', telescope_extensions.egrepify.egrepify)
 set_keymap('n', '<Leader>b', telescope_builtin.buffers)
 set_keymap('n', '<Leader>c', telescope_builtin.git_bcommits)
+set_keymap('n', '<Leader>w', telescope_extensions.workspaces.workspaces)
 set_keymap('n', 'gd', telescope_builtin.lsp_definitions)
 set_keymap('n', 'gt', telescope_builtin.lsp_type_definitions)
 set_keymap('n', 'gi', telescope_builtin.lsp_implementations)

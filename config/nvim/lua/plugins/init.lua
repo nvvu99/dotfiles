@@ -1,6 +1,5 @@
 require('lazy').setup({
     'tpope/vim-sensible',
-    'airblade/vim-rooter',
 
     -- LSP
     {
@@ -14,6 +13,9 @@ require('lazy').setup({
                 'folke/neoconf.nvim',
             },
             config = require('plugins.mason'),
+            cond = function()
+                return vim.fn.glob('.project') ~= ''
+            end,
         },
     },
 
@@ -22,6 +24,7 @@ require('lazy').setup({
         {
             'folke/trouble.nvim',
             requires = 'nvim-tree/nvim-web-devicons',
+            config = true,
         },
         {
             name = 'lsp_lines',
@@ -43,7 +46,7 @@ require('lazy').setup({
                 'hrsh7th/cmp-nvim-lsp-signature-help',
                 'onsails/lspkind.nvim',
                 'saadparwaiz1/cmp_luasnip',
-                { 'L3MON4D3/LuaSnip', tag = 'v1.1.0' },
+                'L3MON4D3/LuaSnip',
                 'rafamadriz/friendly-snippets',
             },
             config = require('plugins.nvim-cmp'),
@@ -56,6 +59,9 @@ require('lazy').setup({
                 'hrsh7th/nvim-cmp',
             },
             config = require('plugins.codeium'),
+            cond = function()
+                return vim.fn.glob('.project') ~= ''
+            end,
         },
         {
             'dpayne/CodeGPT.nvim',
@@ -86,7 +92,7 @@ require('lazy').setup({
     {
         {
             'nvim-telescope/telescope.nvim',
-            tag = '0.1.3',
+            tag = '0.1.8',
             dependencies = { 'nvim-lua/plenary.nvim' },
             config = require('plugins.telescope'),
         },
@@ -124,7 +130,14 @@ require('lazy').setup({
             dependencies = { 'nvim-tree/nvim-web-devicons' },
             config = require('plugins.nvim-tree'),
         },
-        'nacro90/numb.nvim',
+        {
+            'nacro90/numb.nvim',
+            config = true,
+        },
+        {
+            'tris203/precognition.nvim',
+            config = true,
+        },
     },
 
     -- Visual
@@ -167,7 +180,7 @@ require('lazy').setup({
                 'SmiteshP/nvim-navic',
                 'nvim-tree/nvim-web-devicons', -- optional dependency
             },
-            config = require('plugins.barbecue'),
+            config = true,
         },
     },
 
@@ -207,7 +220,10 @@ require('lazy').setup({
         },
         {
             'rcarriga/nvim-dap-ui',
-            dependencies = { 'mfussenegger/nvim-dap' },
+            dependencies = {
+                'mfussenegger/nvim-dap',
+                'nvim-neotest/nvim-nio',
+            },
             config = require('plugins.nvim-dap-ui'),
         },
         {
@@ -250,9 +266,12 @@ require('lazy').setup({
         'JoosepAlviste/nvim-ts-context-commentstring',
         'folke/todo-comments.nvim',
         {
-            'NTBBloodbath/rest.nvim',
-            dependencies = { 'nvim-lua/plenary.nvim' },
-            config = require('plugins.rest'),
+            'vhyrro/luarocks.nvim',
+            priority = 1000,
+            config = true,
+            opts = {
+                rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' },
+            },
         },
         { 'numtostr/BufOnly.nvim', cmd = 'BufOnly' },
         {
@@ -269,7 +288,11 @@ require('lazy').setup({
         },
         {
             'natecraddock/workspaces.nvim',
-            config = require('plugins.workspaces'),
+            config = true,
+        },
+        {
+            'windwp/nvim-projectconfig',
+            config = require('plugins.projectconfig'),
         },
     },
 })

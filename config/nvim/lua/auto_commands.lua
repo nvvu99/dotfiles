@@ -5,15 +5,10 @@ local format = augroup('format', {})
 autocmd({ 'BufWritePost' }, {
     group = format,
     pattern = '*',
-    command = 'FormatWrite',
-})
-
-local dap = augroup('dap', {})
-autocmd({ 'VimEnter' }, {
-    group = dap,
-    pattern = '*',
     callback = function()
-        require('dap.ext.vscode').load_launchjs(vim.fn.getcwd() .. '/.vscode/launch.json')
+        if vim.fn.glob('.formatignore') == '' then
+            vim.cmd('FormatWrite')
+        end
     end,
 })
 
@@ -34,7 +29,7 @@ autocmd({ 'TermOpen' }, {
 })
 
 local titlestring = augroup('titlestring', { clear = true })
-autocmd('VimEnter', {
+autocmd({ 'VimEnter' }, {
     pattern = '*',
     group = titlestring,
     command = "let &titlestring=fnamemodify(getcwd(), ':t')",
@@ -53,3 +48,19 @@ autocmd({
         require('barbecue.ui').update()
     end,
 })
+
+-- local unfocus = augroup('unfocus', {})
+-- autocmd({ 'FocusLost' }, {
+--     group = unfocus,
+--     callback = function()
+--         vim.lsp.stop_client(vim.lsp.get_clients(), true)
+--     end,
+-- })
+--
+-- local focus = augroup('focus', {})
+-- autocmd({ 'FocusGained' }, {
+--     group = focus,
+--     callback = function()
+--         vim.cmd('LspStart')
+--     end,
+-- })

@@ -1,23 +1,22 @@
 return function()
+    require('mini.doc').setup()
+    require('mini.starter').setup()
+    require('mini.surround').setup()
+    require('mini.trailspace').setup()
+    require('mini.align').setup()
+    require('mini.ai').setup()
+
+    require('mini.splitjoin').setup({
+        mappings = {
+            toggle = '<Leader>J',
+        },
+    })
+
     require('mini.comment').setup({
         hooks = {
             pre = function()
                 require('ts_context_commentstring.internal').update_commentstring()
             end,
-        },
-    })
-
-    require('mini.doc').setup({})
-
-    require('mini.starter').setup({})
-
-    require('mini.surround').setup({})
-
-    require('mini.trailspace').setup({})
-
-    require('mini.splitjoin').setup({
-        mappings = {
-            toggle = '<Leader>J',
         },
     })
 
@@ -34,8 +33,4 @@ return function()
             hex_color = hipatterns.gen_highlighter.hex_color(),
         },
     })
-
-    require('mini.align').setup()
-
-    require('mini.ai').setup()
 end

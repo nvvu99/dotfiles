@@ -13,7 +13,6 @@ return {
         'svelte',
         'pug',
         'vue',
-        'php',
         'blade',
     },
 }

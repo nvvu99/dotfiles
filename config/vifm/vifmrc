@@ -130,7 +130,7 @@ mark w /mnt/win
 " %m run the command in a menu window
 
 command mv !mv %f %D
-command rm !rm -fr %f
+command rm !rm -ir %f
 command df df -h %m 2> /dev/null
 command diff nvim -d %f %F
 command zip zip -r %f.zip %f
@@ -445,5 +445,8 @@ nmap <c-x> :move<cr>
 vmap <c-x> :move<cr>
 nmap <f10> :mkdir<space>
 nmap <c-n> :touch<space>
+
+nnoremap < <C-w>5<
+nnoremap > <C-w>5>
 
 source '~/.config/vifm/devicons'

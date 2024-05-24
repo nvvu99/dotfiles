@@ -7,6 +7,7 @@ return function()
             layout_config = {
                 horizontal = {
                     prompt_position = 'top',
+                    preview_width = 0.65,
                 },
             },
             mappings = {

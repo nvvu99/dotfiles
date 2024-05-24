@@ -19,20 +19,6 @@ return function()
         type = 'executable',
         command = 'php-debug-adapter',
     }
-    dap.configurations.php = {
-        {
-            type = 'php',
-            request = 'launch',
-            name = 'Listen for Xdebug',
-            host = '0.0.0.0',
-            port = 9000,
-            log = true,
-            proxy = {
-                enable = true,
-                key = 'PHPSTORM',
-            },
-        },
-    }
 
     -- Python
     dap.adapters.python = {
@@ -59,21 +45,17 @@ return function()
             args = { debug_adapters_path .. '/vscode-js-debug/src/dapDebugServer.js', '${port}' },
         },
     }
-    local config = {
+    local node_config = {
         {
             type = 'pwa-node',
-            request = 'launch',
-            name = 'Launch file',
-            program = '${file}',
+            request = 'attach',
+            name = 'Attach',
+            processId = require('dap.utils').pick_process,
             cwd = '${workspaceFolder}',
         },
     }
-    dap.configurations.javascript = {
-        config,
-    }
-    dap.configurations.typescript = {
-        config,
-    }
+    dap.configurations.javascript = node_config
+    dap.configurations.typescript = node_config
 
     vim_fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
 end

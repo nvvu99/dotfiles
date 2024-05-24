@@ -1,12 +1,19 @@
 return function()
     require('neoscroll').setup({})
+    local scroll = require('neoscroll').scroll
+    local scroll_opts = { move_cursor = true, duration = 50 }
 
     local mappings = {
-        ['<C-s>'] = { 'scroll', { '-0.20', 'false', '50' } },
-        ['<C-a>'] = { 'scroll', { '0.20', 'false', '50' } },
-        ["'"] = { 'scroll', { '-0.20', 'false', '50' } },
-        ['<Cr>'] = { 'scroll', { '0.20', 'false', '50' } },
+        ["'"] = function()
+            scroll(-0.2, scroll_opts)
+        end,
+        ['<Cr>'] = function()
+            scroll(0.2, scroll_opts)
+        end,
     }
 
-    require('neoscroll.config').set_mappings(mappings)
+    local modes = { 'n', 'v', 'x' }
+    for key, func in pairs(mappings) do
+        vim.keymap.set(modes, key, func)
+    end
 end

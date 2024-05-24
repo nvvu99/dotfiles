@@ -63,6 +63,7 @@ opt.listchars:append('space:⋅')
 opt.listchars:append('eol:↴')
 opt.title = true
 opt.exrc = true
+opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 vim.cmd([[
 let base16colorspace=256

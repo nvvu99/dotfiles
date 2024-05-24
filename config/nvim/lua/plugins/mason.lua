@@ -26,6 +26,11 @@ return function()
         end
     end
 
+    local default_lsp_settings = {
+        capabilities = capabilities,
+        on_attach = on_client_attach,
+    }
+
     require('mason').setup()
     require('mason-lspconfig').setup({
         ensure_installed = {
@@ -46,6 +51,7 @@ return function()
             'volar',
             'yamlls',
             'gopls',
+            'perlnavigator',
         },
         automatic_installation = true,
         ui = {
@@ -57,13 +63,9 @@ return function()
         },
         handlers = {
             function(server_name)
-                local default_lsp_settings = {
-                    capabilities = capabilities,
-                    on_attach = on_client_attach,
-                }
-                local server_settings = require('lsp_settings')[server_name]
+                local server_settings = require('lsp_settings')[server_name] or {}
 
-                lspconfig[server_name].setup(merge_tables(default_lsp_settings, server_settings))
+                lspconfig[server_name].setup(vim.tbl_extend('force', default_lsp_settings, server_settings))
             end,
         },
     })

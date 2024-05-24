@@ -1,3 +1,5 @@
-return {
-    keys = 'etovxqpdygfblzhckisuran',
-}
+return function()
+    require('hop').setup({
+        keys = 'etovxqpdygfblzhckisuran',
+    })
+end

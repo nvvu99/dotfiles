@@ -1,6 +1,5 @@
 require('lazy').setup({
     'tpope/vim-sensible',
-    'airblade/vim-rooter',
 
     -- LSP
     {
@@ -22,6 +21,7 @@ require('lazy').setup({
         {
             'folke/trouble.nvim',
             requires = 'nvim-tree/nvim-web-devicons',
+            config = true,
         },
         {
             name = 'lsp_lines',
@@ -86,7 +86,7 @@ require('lazy').setup({
     {
         {
             'nvim-telescope/telescope.nvim',
-            tag = '0.1.3',
+            tag = '0.1.8',
             dependencies = { 'nvim-lua/plenary.nvim' },
             config = require('plugins.telescope'),
         },
@@ -167,7 +167,7 @@ require('lazy').setup({
                 'SmiteshP/nvim-navic',
                 'nvim-tree/nvim-web-devicons', -- optional dependency
             },
-            config = require('plugins.barbecue'),
+            config = true,
         },
     },
 
@@ -207,7 +207,10 @@ require('lazy').setup({
         },
         {
             'rcarriga/nvim-dap-ui',
-            dependencies = { 'mfussenegger/nvim-dap' },
+            dependencies = {
+                'mfussenegger/nvim-dap',
+                'nvim-neotest/nvim-nio',
+            },
             config = require('plugins.nvim-dap-ui'),
         },
         {
@@ -250,14 +253,32 @@ require('lazy').setup({
         'JoosepAlviste/nvim-ts-context-commentstring',
         'folke/todo-comments.nvim',
         {
-            'NTBBloodbath/rest.nvim',
-            dependencies = { 'nvim-lua/plenary.nvim' },
-            config = require('plugins.rest'),
+            'vhyrro/luarocks.nvim',
+            priority = 1000,
+            config = true,
+            opts = {
+                rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' },
+            },
+        },
+        {
+            'rest-nvim/rest.nvim',
+            ft = 'http',
+            dependencies = { 'luarocks.nvim' },
+            config = true,
         },
         { 'numtostr/BufOnly.nvim', cmd = 'BufOnly' },
         {
             'niuiic/translate.nvim',
             dependencies = { 'niuiic/core.nvim' },
+        },
+        {
+            'NeogitOrg/neogit',
+            dependencies = {
+                'nvim-lua/plenary.nvim',
+                'sindrets/diffview.nvim',
+                'nvim-telescope/telescope.nvim',
+            },
+            config = true,
         },
     },
 
@@ -271,5 +292,9 @@ require('lazy').setup({
             'natecraddock/workspaces.nvim',
             config = require('plugins.workspaces'),
         },
+        -- {
+        --     'indwp/nvim-projectconfig',
+        --     config = require('plugins.workspaces'),
+        -- },
     },
 })

@@ -106,9 +106,6 @@ set_keymap('n', 'zM', ufo.closeAllFolds)
 set_keymap('n', '<Leader>r', '<Plug>RestNvim')
 set_keymap('n', '<Leader><leader>r', '<Plug>RestNvimLast')
 
--- LSP
-set_keymap('n', 'K', vim.lsp.buf.hover)
-
 -- ISwap
 set_keymap('n', '<Leader>s', ':ISwapWith<Cr>')
 

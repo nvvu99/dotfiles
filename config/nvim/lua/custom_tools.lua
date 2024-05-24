@@ -13,12 +13,6 @@ function toggle_lazygit()
 end
 
 function toggle_lazydocker()
-    local docker_compose_folder = vim.fn.getcwd()
-    if vim.g.docker_compose_folder then
-        docker_compose_folder = vim.g.docker_compose_folder
-    end
-
-    print(docker_compose_folder)
-    lazydocker.cmd = 'cd ' .. docker_compose_folder .. ' && lazydocker'
+    lazydocker.cmd = 'cd ' .. vim.fn.getcwd() .. ' && lazydocker'
     lazydocker:toggle()
 end

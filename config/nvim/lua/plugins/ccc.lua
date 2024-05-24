@@ -1,5 +1,7 @@
-return {
-    highlighter = {
-        auto_enable = true,
-    },
-}
+return function()
+    require('ccc').setup({
+        highlighter = {
+            auto_enable = true,
+        },
+    })
+end

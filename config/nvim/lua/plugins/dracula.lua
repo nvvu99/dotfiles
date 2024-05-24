@@ -25,40 +25,42 @@ local colors = {
     black = '#191A21',
 }
 
-return {
-    -- customize dracula color palette
-    colors = colors,
-    -- show the '~' characters after the end of buffers
-    show_end_of_buffer = true, -- default false
-    -- use transparent background
-    transparent_bg = true, -- default false
-    -- set custom lualine background color
-    lualine_bg_color = '#44475a', -- default nil
-    -- set italic comment
-    italic_comment = true, -- default false
-    -- overrides the default highlights see `:h synIDattr`
-    overrides = {
-        -- Examples
-        -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
-        -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
-        -- Nothing = {} -- clear highlight of Nothing
-        VertSplit = { fg = colors.purple },
-        FoldColumn = { fg = colors.gutter_fg },
-        IblScope = { fg = colors.pink, nocombine = true },
-        Folded = { bg = colors.gutter_fg },
-        Search = { fg = colors.orange, bg = colors.comment },
-        IncSearch = { fg = colors.black, bg = colors.orange },
-        VirtColumn = { fg = colors.selection },
-        MiniHipatternsFixme = { bg = colors.red, fg = colors.black },
-        MiniHipatternsHack = { bg = colors.orange, fg = colors.black },
-        MiniHipatternsTodo = { bg = colors.cyan, fg = colors.black },
-        MiniHipatternsNote = { bg = colors.green, fg = colors.black },
-        RainbowDelimiterRed = { fg = colors.red },
-        RainbowDelimiterYellow = { fg = colors.yellow },
-        RainbowDelimiterOrange = { fg = colors.orange },
-        RainbowDelimiterGreen = { fg = colors.green },
-        RainbowDelimiterViolet = { fg = colors.purple },
-        RainbowDelimiterCyan = { fg = colors.cyan },
-        DapUIBreakpointsCurrentLine = { fg = colors.cyan },
-    },
-}
+return function()
+    require('dracula').setup({
+        -- customize dracula color palette
+        colors = colors,
+        -- show the '~' characters after the end of buffers
+        show_end_of_buffer = true, -- default false
+        -- use transparent background
+        transparent_bg = true, -- default false
+        -- set custom lualine background color
+        lualine_bg_color = '#44475a', -- default nil
+        -- set italic comment
+        italic_comment = true, -- default false
+        -- overrides the default highlights see `:h synIDattr`
+        overrides = {
+            -- Examples
+            -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
+            -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
+            -- Nothing = {} -- clear highlight of Nothing
+            VertSplit = { fg = colors.purple },
+            FoldColumn = { fg = colors.gutter_fg },
+            IblScope = { fg = colors.pink, nocombine = true },
+            Folded = { bg = colors.gutter_fg },
+            Search = { fg = colors.orange, bg = colors.comment },
+            IncSearch = { fg = colors.black, bg = colors.orange },
+            VirtColumn = { fg = colors.selection },
+            MiniHipatternsFixme = { bg = colors.red, fg = colors.black },
+            MiniHipatternsHack = { bg = colors.orange, fg = colors.black },
+            MiniHipatternsTodo = { bg = colors.cyan, fg = colors.black },
+            MiniHipatternsNote = { bg = colors.green, fg = colors.black },
+            RainbowDelimiterRed = { fg = colors.red },
+            RainbowDelimiterYellow = { fg = colors.yellow },
+            RainbowDelimiterOrange = { fg = colors.orange },
+            RainbowDelimiterGreen = { fg = colors.green },
+            RainbowDelimiterViolet = { fg = colors.purple },
+            RainbowDelimiterCyan = { fg = colors.cyan },
+            DapUIBreakpointsCurrentLine = { fg = colors.cyan },
+        },
+    })
+end

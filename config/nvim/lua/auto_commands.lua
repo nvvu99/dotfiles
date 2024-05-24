@@ -5,7 +5,11 @@ local format = augroup('format', {})
 autocmd({ 'BufWritePost' }, {
     group = format,
     pattern = '*',
-    command = 'FormatWrite',
+    callback = function()
+        if vim.g.autoformat ~= false then
+            vim.cmd('FormatWrite')
+        end
+    end,
 })
 
 local dap = augroup('dap', {})
@@ -34,7 +38,7 @@ autocmd({ 'TermOpen' }, {
 })
 
 local titlestring = augroup('titlestring', { clear = true })
-autocmd('VimEnter', {
+autocmd({ 'VimEnter' }, {
     pattern = '*',
     group = titlestring,
     command = "let &titlestring=fnamemodify(getcwd(), ':t')",

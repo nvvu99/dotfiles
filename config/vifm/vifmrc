@@ -130,7 +130,7 @@ mark w /mnt/win
 " %m run the command in a menu window
 
 command mv !mv %f %D
-command rm !rm -fr %f
+command rm !rm -frI %f
 command df df -h %m 2> /dev/null
 command diff nvim -d %f %F
 command zip zip -r %f.zip %f
@@ -172,10 +172,6 @@ filetype *.pdf
         \ firefox %c %i &,
         \ apvlv %c,
         \ xpdf %c
-fileviewer *.pdf
-        \ vifmimg pdf %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
 
 " PostScript
 filetype *.ps,*.ps.gz,*.eps gv %c %i &
@@ -186,10 +182,6 @@ filetype *.djvu
         \ okular %f
 
 " Epub
-fileviewer *.epub
-        \ vifmimg epub %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
 filetype *.epub
         \ zathura %f &,
         \ okular %f
@@ -203,10 +195,6 @@ filetype <audio/*>
         \ ffplay -nodisp -autoexit %c,
         \ {Play using MPlayer}
         \ mplayer %f,
-fileviewer <audio/*>
-        \ vifmimg audio %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
 
 " Video
 filetype <video/*>
@@ -220,16 +208,6 @@ filetype <video/*>
         \ mplayer %f &,
         \ {View using mpv}
         \ mpv %f &,
-fileviewer <video/*>
-        \ vifmimg video %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
-
-" Font
-fileviewer <font/*>
-    \ vifmimg fontpreview %px %py %pw %ph %c
-    \ %pc
-    \ vifmimg clear
 
 " Object
 filetype *.o nm %f | less
@@ -240,35 +218,22 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filetype <image/*>
-        \ {View in vimiv}
-        \ vimiv %c &,
-        \ {View in gwenview}
-        \ gwenview %c &,
-        \ {View in feh}
-        \ feh --draw-filename --draw-actions --scale-down --geometry 1380x768 %c &,
-        \ {View in sxiv}
-        \ sxiv -ia %f &,
-        \ {View in imv}
-        \ imv -b 1D2330 -d %d &,
-        \ {View in cacaview}
-        \ cacaview %c &,
-fileviewer <image/svg+xml>
-        \ vifmimg svg %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
+    \ {View in vimiv}
+    \ vimiv %c &,
+    \ {View in gwenview}
+    \ gwenview %c &,
+    \ {View in feh}
+    \ feh --draw-filename --draw-actions --scale-down --geometry 1380x768 %c &,
+    \ {View in sxiv}
+    \ sxiv -ia %f &,
+    \ {View in imv}
+    \ imv -b 1D2330 -d %d &,
+    \ {View in cacaview}
+    \ cacaview %c &,
 fileviewer <image/*>
-        \ vifmimg draw %px %py %pw %ph %c
+        \ kitty +kitten icat --transfer-mode=file --place=%pwx%ph@%pxx%py %c >/dev/tty </dev/tty %N
         \ %pc
-        \ vifmimg clear
-
-" fileviewer *.gif
-"         \ vifmimg gifpreview %px %py %pw %ph %c
-"         \ %pc
-"         \ vifmimg clear
-" fileviewer *.ico
-"     \ vifmimg magickpreview %px %py %pw %ph %c
-"     \ %pc
-"     \ vifmimg clear
+        \ kitty +kitten icat --clear --silent >/dev/tty </dev/tty %N
 
 " MD5
 filetype *.md5

@@ -48,6 +48,7 @@ require('lazy').setup({
                 'saadparwaiz1/cmp_luasnip',
                 'L3MON4D3/LuaSnip',
                 'rafamadriz/friendly-snippets',
+                'zbirenbaum/copilot-cmp',
             },
             config = require('plugins.nvim-cmp'),
         },
@@ -64,12 +65,14 @@ require('lazy').setup({
             end,
         },
         {
-            'dpayne/CodeGPT.nvim',
+            'CopilotC-Nvim/CopilotChat.nvim',
             dependencies = {
-                'nvim-lua/plenary.nvim',
-                'MunifTanjim/nui.nvim',
+                -- { 'github/copilot.vim' },
+                { 'zbirenbaum/copilot.lua' },
+                { 'nvim-lua/plenary.nvim', branch = 'master' },
             },
-            config = require('plugins.codegpt'),
+            build = 'make tiktoken', -- Only on MacOS or Linux
+            config = require('plugins.CopilotChat'),
         },
     },
 

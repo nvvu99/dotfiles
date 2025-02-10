@@ -9,11 +9,19 @@ return function()
         paths = { '~/.local/share/nvim/lazy/friendly-snippets' },
     })
 
-    -- require('copilot').setup({
-    --     suggestion = { enabled = false },
-    --     panel = { enabled = false },
-    -- })
-    -- require('copilot_cmp').setup()
+    require('copilot').setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+        -- suggestion = {
+        --     auto_trigger = true,
+        --     keymap = {
+        --         next = '<M-j>',
+        --         prev = '<M-k>',
+        --         dismiss = '<M-u>',
+        --     },
+        -- },
+    })
+    require('copilot_cmp').setup()
 
     local buffer_source = {
         name = 'buffer',
@@ -64,7 +72,7 @@ return function()
             ['<CR>'] = cmp.mapping.confirm(),
         }),
         sources = cmp.config.sources({
-            { name = 'codeium' },
+            { name = 'copilot' },
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
         }, {
@@ -77,7 +85,7 @@ return function()
         sorting = {
             priority_weight = 2,
             comparators = {
-                -- require('copilot_cmp.comparators').prioritize,
+                require('copilot_cmp.comparators').prioritize,
                 cmp.config.compare.offset,
                 cmp.config.compare.exact,
                 cmp.config.compare.score,

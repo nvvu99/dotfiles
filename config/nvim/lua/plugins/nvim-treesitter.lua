@@ -1,15 +1,7 @@
-return function()
-    local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-    parser_config.blade = {
-        install_info = {
-            url = 'https://github.com/EmranMR/tree-sitter-blade',
-            files = { 'src/parser.c' },
-            branch = 'main',
-        },
-        filetype = 'blade',
-    }
-
-    require('nvim-treesitter.configs').setup({
+return {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    opts = {
         -- A list of parser names, or "all"
         ensure_installed = 'all',
         -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -30,9 +22,6 @@ return function()
             max_file_lines = nil, -- Do not enable for files with more than n lines, int
             -- colors = {}, -- table of hex strings
             -- termcolors = {} -- table of colour name strings
-        },
-        autotag = {
-            enable = true,
         },
         textobjects = {
             select = {
@@ -63,13 +52,25 @@ return function()
                 clear_on_cursor_move = true,
             },
         },
-    })
+    },
+    init = function()
+        vim.filetype.add({
+            pattern = {
+                ['.*.tex'] = 'tex',
+            },
+        })
+    end,
+    config = function(_, opts)
+        require('nvim-treesitter.configs').setup(opts)
 
-    vim.filetype.add({
-        pattern = {
-            ['.*%.blade%.php'] = 'blade',
-            ['.*.conf'] = 'ini',
-            ['.*.tex'] = 'tex',
-        },
-    })
-end
+        local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+        parser_config.blade = {
+            install_info = {
+                url = 'https://github.com/EmranMR/tree-sitter-blade',
+                files = { 'src/parser.c' },
+                branch = 'main',
+            },
+            filetype = 'blade',
+        }
+    end,
+}

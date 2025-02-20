@@ -1,7 +1,12 @@
-return function()
-    local dapui = require('dapui')
-
-    dapui.setup({
+return {
+    'rcarriga/nvim-dap-ui',
+    dependencies = {
+        'mfussenegger/nvim-dap',
+        'nvim-neotest/nvim-nio',
+        'przepompownia/nvim-dap-tab',
+        'theHamsta/nvim-dap-virtual-text',
+    },
+    opt = {
         icons = { expanded = '▾', collapsed = '▸' },
         mappings = {
             -- Use a table to apply multiple mappings
@@ -55,7 +60,10 @@ return function()
         render = {
             max_type_length = nil, -- Can be integer or nil.
         },
-    })
-
-    require('dap-tab').setup()
-end
+    },
+    config = function(_, opts)
+        require('dapui').setup(opts)
+        require('dap-tab').setup()
+        require('nvim-dap-virtual-text').setup({})
+    end,
+}

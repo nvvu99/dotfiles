@@ -1,6 +1,6 @@
-return function()
-    require('nvim-projectconfig').setup({
+return {
+    'windwp/nvim-projectconfig',
+    opts = {
         project_dir = '~/.config/projects/',
-        autocmd = true,
-    })
-end
+    },
+}

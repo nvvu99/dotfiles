@@ -1,18 +1,16 @@
-return function()
-    require('better_escape').setup({
-        timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
+return {
+    'max397574/better-escape.nvim',
+    opts = {
+        timeout = 250,
         default_mappings = false,
         mappings = {
             i = {
                 j = {
-                    -- These can all also be functions
-                    k = '<Esc>',
                     j = '<Esc>',
                 },
             },
             c = {
                 j = {
-                    k = '<Esc>',
                     j = '<Esc>',
                 },
             },
@@ -27,5 +25,5 @@ return function()
                 },
             },
         },
-    })
-end
+    },
+}

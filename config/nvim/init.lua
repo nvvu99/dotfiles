@@ -2,11 +2,7 @@ vim.g.netrw_liststyle = 3
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ','
 
-require('utils')
-require('bootstrap')
-require('plugins')
-require('custom_tools')
-require('auto_commands')
-require('commands')
-require('mappings')
-require('settings')
+require('config.lazy')
+require('config.auto_commands')
+require('config.mappings')
+require('config.settings')

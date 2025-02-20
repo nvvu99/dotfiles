@@ -3,6 +3,8 @@ return {
         'astro',
         'eruby',
         'html',
+        'xhtml',
+        'smarty',
         'htmldjango',
         'javascriptreact',
         'typescriptreact',

@@ -25,8 +25,9 @@ local colors = {
     black = '#191A21',
 }
 
-return function()
-    require('dracula').setup({
+return {
+    'Mofiqul/dracula.nvim',
+    opts = {
         -- customize dracula color palette
         colors = colors,
         -- show the '~' characters after the end of buffers
@@ -43,7 +44,7 @@ return function()
             -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
             -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
             -- Nothing = {} -- clear highlight of Nothing
-            VertSplit = { fg = colors.purple },
+            WinSeparator = { fg = colors.purple },
             FoldColumn = { fg = colors.gutter_fg },
             IblScope = { fg = colors.pink, nocombine = true },
             Folded = { bg = colors.gutter_fg },
@@ -61,6 +62,12 @@ return function()
             RainbowDelimiterViolet = { fg = colors.purple },
             RainbowDelimiterCyan = { fg = colors.cyan },
             DapUIBreakpointsCurrentLine = { fg = colors.cyan },
+            GitSignsAdd = { fg = colors.green },
+            GitSignsChange = { fg = colors.orange },
+            GitSignsDelete = { fg = colors.red },
+            GitSignsStagedAdd = { fg = colors.bright_green },
+            GitSignsStagedChange = { fg = colors.bright_yellow },
+            GitSignsStagedDelete = { fg = colors.bright_red },
         },
-    })
-end
+    },
+}

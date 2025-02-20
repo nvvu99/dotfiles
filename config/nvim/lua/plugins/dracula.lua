@@ -25,8 +25,9 @@ local colors = {
     black = '#191A21',
 }
 
-return function()
-    require('dracula').setup({
+return {
+    'Mofiqul/dracula.nvim',
+    opts = {
         -- customize dracula color palette
         colors = colors,
         -- show the '~' characters after the end of buffers
@@ -62,5 +63,5 @@ return function()
             RainbowDelimiterCyan = { fg = colors.cyan },
             DapUIBreakpointsCurrentLine = { fg = colors.cyan },
         },
-    })
-end
+    },
+}

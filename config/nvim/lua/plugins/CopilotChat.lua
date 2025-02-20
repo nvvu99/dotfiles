@@ -1,21 +1,13 @@
-return function()
-    require('CopilotChat').setup({
+return {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = 'zbirenbaum/copilot.lua',
+    build = 'make tiktoken', -- Only on MacOS or Linux
+    opts = {
         window = {
             layout = 'float',
             width = 0.8,
             height = 0.8,
             border = 'rounded',
         },
-    })
-
-    -- require('copilot').setup({
-    --     suggestion = {
-    --         auto_trigger = true,
-    --         keymap = {
-    --             next = '<M-j>',
-    --             prev = '<M-k>',
-    --             dismiss = '<M-u>',
-    --         },
-    --     },
-    -- })
-end
+    },
+}

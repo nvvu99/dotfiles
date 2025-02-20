@@ -11,3 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.runtimepath:prepend(lazypath)
+
+local ok, lazy = pcall(require, 'lazy')
+if not ok then
+    return
+end
+
+lazy.setup('plugins')

@@ -1,10 +1,16 @@
-local colors = {
-    bg = '#282A36',
-    fg = '#F8F8F2',
-}
+local tmap_buffer = require('utils').tmap_buffer
+local map = require('utils').map
 
-return function()
-    require('toggleterm').setup({
+local function set_terminal_keymaps()
+    tmap_buffer('<C-h>', [[<C-\><C-n><C-W>h]])
+    tmap_buffer('<C-j>', [[<C-\><C-n><C-W>j]])
+    tmap_buffer('<C-k>', [[<C-\><C-n><C-W>k]])
+    tmap_buffer('<C-l>', [[<C-\><C-n><C-W>l]])
+end
+
+return {
+    'akinsho/toggleterm.nvim',
+    opts = {
         -- size can be a number or function which is passed the current terminal
         size = 20,
         open_mapping = [[<A-\>]],
@@ -12,8 +18,8 @@ return function()
         shade_filetypes = {},
         highlights = {
             NormalFloat = {
-                bg = colors.bg,
-                fg = colors.fg,
+                bg = '#282A36',
+                fg = '#F8F8F2',
             },
         },
         shade_terminals = true, -- NOTE: this option takes priority over highlights specified so if you specify Normal highlights you should set this to false
@@ -36,5 +42,31 @@ return function()
             height = 80,
             winblend = 0,
         },
-    })
-end
+    },
+    config = function(_, opts)
+        require('toggleterm').setup(opts)
+
+        vim.api.nvim_create_autocmd({ 'TermOpen' }, {
+            group = vim.api.nvim_create_augroup('toggle_term', {}),
+            pattern = 'term://*',
+            callback = set_terminal_keymaps,
+        })
+
+        local Terminal = require('toggleterm.terminal').Terminal
+        local lazygit = Terminal:new({ cmd = 'lazygit', hidden = true, count = 98 })
+        local lazydocker = Terminal:new({ cmd = 'lazydocker', hidden = true, count = 99 })
+
+        local function toggle_lazygit()
+            lazygit.cmd = 'cd ' .. vim.fn.getcwd() .. ' && lazygit'
+            lazygit:toggle()
+        end
+
+        local function toggle_lazydocker()
+            lazydocker.cmd = 'cd ' .. vim.fn.getcwd() .. ' && lazydocker'
+            lazydocker:toggle()
+        end
+
+        map({ 'n', 't' }, '<Leader>g', toggle_lazygit)
+        map({ 'n', 't' }, '<Leader>d', toggle_lazydocker)
+    end,
+}

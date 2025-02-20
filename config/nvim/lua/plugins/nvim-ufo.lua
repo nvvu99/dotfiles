@@ -1,5 +1,6 @@
-return function()
-    require('ufo').setup({
+return {
+    'kevinhwang91/nvim-ufo',
+    opts = {
         open_fold_hl_timeout = 0,
         fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
             local newVirtText = {}
@@ -41,5 +42,12 @@ return function()
         },
         close_fold_kinds_for_ft = {},
         enable_get_fold_virt_text = true,
-    })
-end
+    },
+    config = function(_, opts)
+        local ufo = require('ufo')
+        ufo.setup(opts)
+
+        require('utils').nmap('zR', ufo.openAllFolds)
+        require('utils').nmap('zM', ufo.closeAllFolds)
+    end,
+}

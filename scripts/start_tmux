@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if tmux has-session -t $1 2>/dev/null; then
+    tmux a -t $1
+else
+    tmux
+fi

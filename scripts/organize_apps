@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+function move_window() {
+    local window_class=$1
+    local workspace=$2
+    local monitor_x=$3
+    local window_id=$(xdotool search --onlyvisible --class $window_class)
+
+    wmctrl -ir "$window_id" -b remove,maximized_vert,maximized_horz
+
+    xdotool set_desktop_for_window $window_id $workspace windowmove $window_id $monitor_x 0
+
+    wmctrl -ir "$window_id" -b add,maximized_vert,maximized_horz
+}
+
+first_monitor_x=0
+second_monitor_x=1920
+
+workspace=0
+move_window 'tmux-personal' $workspace $first_monitor_x
+move_window 'firefox-personal' $workspace $second_monitor_x
+
+workspace=1
+move_window 'DBeaver' $workspace $first_monitor_x
+move_window 'tmux-work' $workspace $first_monitor_x
+move_window 'firefox-work' $workspace $second_monitor_x
+
+workspace=2
+move_window 'vifm' $workspace $first_monitor_x
+
+workspace=4
+move_window 'slack' $workspace $second_monitor_x

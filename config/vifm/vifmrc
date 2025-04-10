@@ -173,9 +173,9 @@ filetype *.pdf
         \ apvlv %c,
         \ xpdf %c
 fileviewer *.pdf
-        \ vifmimg pdf %px %py %pw %ph %c
+        \ vifmimg pdf %px %py %pw %ph %c %N
         \ %pc
-        \ vifmimg clear
+        \ vifmimg clear %N
 
 " PostScript
 filetype *.ps,*.ps.gz,*.eps gv %c %i &
@@ -187,9 +187,9 @@ filetype *.djvu
 
 " Epub
 fileviewer *.epub
-        \ vifmimg epub %px %py %pw %ph %c
+        \ vifmimg epub %px %py %pw %ph %c %N
         \ %pc
-        \ vifmimg clear
+        \ vifmimg clear %N
 filetype *.epub
         \ zathura %f &,
         \ okular %f
@@ -204,9 +204,9 @@ filetype <audio/*>
         \ {Play using MPlayer}
         \ mplayer %f,
 fileviewer <audio/*>
-        \ vifmimg audio %px %py %pw %ph %c
+        \ vifmimg audio %px %py %pw %ph %c %N
         \ %pc
-        \ vifmimg clear
+        \ vifmimg clear %N
 
 " Video
 filetype <video/*>
@@ -221,15 +221,15 @@ filetype <video/*>
         \ {View using mpv}
         \ mpv %f &,
 fileviewer <video/*>
-        \ vifmimg video %px %py %pw %ph %c
+        \ vifmimg video %px %py %pw %ph %c %N
         \ %pc
-        \ vifmimg clear
+        \ vifmimg clear %N
 
 " Font
 fileviewer <font/*>
-    \ vifmimg fontpreview %px %py %pw %ph %c
+    \ vifmimg fontpreview %px %py %pw %ph %c %N
     \ %pc
-    \ vifmimg clear
+    \ vifmimg clear %N
 
 " Object
 filetype *.o nm %f | less
@@ -253,13 +253,21 @@ filetype <image/*>
         \ {View in cacaview}
         \ cacaview %c &,
 fileviewer <image/svg+xml>
-        \ vifmimg svg %px %py %pw %ph %c
+        \ vifmimg svg %px %py %pw %ph %c %N
         \ %pc
-        \ vifmimg clear
+        \ vifmimg clear %N
 fileviewer <image/*>
-        \ vifmimg draw %px %py %pw %ph %c
+        \ vifmimg draw %px %py %pw %ph %c %N
         \ %pc
-        \ vifmimg clear
+        \ vifmimg clear %N
+" fileviewer <image/svg+xml>
+"     \ kitten icat --silent --transfer-mode=stream --place='%pw x %ph@%px x %py' %c >/dev/tty </dev/tty %N
+"     \ %pc
+"     \ kitten icat --clear --silent >/dev/tty </dev/tty %N
+" fileviewer <image/*>
+"     \ kitten icat --silent --transfer-mode=file --place=%pwx%ph@%pxx%py %c >/dev/tty </dev/tty %N
+"     \ %pc
+"     \ kitten icat --clear --silent >/dev/tty </dev/tty %N
 
 " fileviewer *.gif
 "         \ vifmimg gifpreview %px %py %pw %ph %c
@@ -449,4 +457,4 @@ nmap <c-n> :touch<space>
 nnoremap < <C-w>5<
 nnoremap > <C-w>5>
 
-source '~/.config/vifm/devicons'
+source '~/.config/vifm/favicons'

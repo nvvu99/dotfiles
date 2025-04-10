@@ -83,7 +83,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(ag alias-finder aliases docker docker-compose laravel git zsh-autosuggestions zsh-syntax-highlighting zsh-vim-mode)
+plugins=(alias-finder aliases docker docker-compose laravel git zsh-autosuggestions zsh-syntax-highlighting zsh-vim-mode)
 
 VIM_MODE_VICMD_KEY='jj'
 MODE_CURSOR_VIINS="blinking bar"

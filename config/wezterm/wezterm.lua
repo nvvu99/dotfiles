@@ -1,14 +1,25 @@
 local wezterm = require('wezterm')
 local action = wezterm.action
+local mux = wezterm.mux
+
+wezterm.on('gui-startup', function(cmd)
+    local tab, pane, window = mux.spawn_window(cmd or {})
+    window:gui_window():maximize()
+end)
 
 return {
-    font = wezterm.font('Fira Code Retina'),
+    font = wezterm.font({
+        family = 'FiraCode Nerd Font SemBd',
+        harfbuzz_features = { 'cv06', 'ss03', 'cv16', 'cv25', 'cv26', 'cv29', 'cv30', 'cv32' },
+    }),
+    font_size = 11,
     color_scheme = 'Dracula (Official)',
 
     window_decorations = 'RESIZE',
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
     hide_tab_bar_if_only_one_tab = true,
+    native_macos_fullscreen_mode = true,
 
     keys = {
         {

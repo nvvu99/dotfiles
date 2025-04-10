@@ -1,17 +1,28 @@
 #!/usr/bin/env bash
 
-CACHE="$HOME/.cache/vifm/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$PWD/$6")" | sha256sum | awk '{print $1}'))"
+# CACHE="$HOME/.cache/vifm/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$PWD/$6")" | sha256sum | awk '{print $1}'))"
+CACHE="$HOME/.cache/vifm/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$PWD/$6")" | sha256sum | awk '{print $1}').jpg"
+export CACHE="${CACHE%% *}"
 
 pclear() {
-    declare -p -A cmd=([action]=remove [identifier]="vifm-preview") \
-        > "$FIFO_UEBERZUG"
+    # declare -p -A cmd=([action]=remove [identifier]="vifm-preview") \
+    #     > "$FIFO_UEBERZUG"
+    rm -f $CACHE
+    kitten icat --clear --silent >/dev/tty </dev/tty
 }
 
 image() {
-    declare -p -A cmd=([action]=add [identifier]="vifm-preview" \
-        [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
-        [path]="$6") \
-        > "$FIFO_UEBERZUG"
+    # declare -p -A cmd=([action]=add [identifier]="vifm-preview" \
+    #     [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+    #     [path]="$6") \
+    #     > "$FIFO_UEBERZUG"
+    local left=$2
+    local top=$3
+    local width=$4
+    local height=$5
+    local path=$6
+
+    kitten icat --silent --transfer-mode=stream --place=${width}x${height}@${left}x${top} --scale-up --engine=magick $path >/dev/tty </dev/tty
 }
 
 main() {
@@ -25,8 +36,8 @@ main() {
 			;;
         "video")
 			[ ! -f "$CACHE" ] && \
-				ffmpegthumbnailer -i "$6" -o "${CACHE}.jpg" -s 0 -q 5
-			image "$1" "$2" "$3" "$4" "$5" "${CACHE}.jpg"
+				ffmpegthumbnailer -i "$6" -o "$CACHE" -s 0 -q 5
+			image "$1" "$2" "$3" "$4" "$5" "$CACHE"
 			;;
         "epub")
 			[ ! -f "$CACHE" ] && \
@@ -34,24 +45,24 @@ main() {
 			image "$1" "$2" "$3" "$4" "$5" "$CACHE"
 			;;
         "pdf")
-			[ ! -f "${CACHE}.jpg" ] && \
+			[ ! -f "$CACHE" ] && \
 				pdftoppm -jpeg -f 1 -singlefile "$6" "$CACHE"
-			image "$1" "$2" "$3" "$4" "$5" "${CACHE}.jpg"
+			image "$1" "$2" "$3" "$4" "$5" "$CACHE"
 			;;
         "audio")
-			[ ! -f "${CACHE}.jpg" ] && \
-				ffmpeg -i "$6" "${CACHE}.jpg" -y &> /dev/null
-			image "$1" "$2" "$3" "$4" "$5" "${CACHE}.jpg"
+			[ ! -f "$CACHE" ] && \
+				ffmpeg -i "$6" "$CACHE" -y &> /dev/null
+			image "$1" "$2" "$3" "$4" "$5" "$CACHE"
 			;;
         "font")
-			[ ! -f "${CACHE}.jpg" ] && \
-				fontpreview -i "$6" -o "${CACHE}.jpg"
-			image "$1" "$2" "$3" "$4" "$5" "${CACHE}.jpg"
+			[ ! -f "$CACHE" ] && \
+				fontpreview -i "$6" -o "$CACHE"
+			image "$1" "$2" "$3" "$4" "$5" "$CACHE"
 			;;
         "svg")
-			[ ! -f "${CACHE}.jpg" ] && \
-				convert "$6" "${CACHE}.jpg"
-			image "$1" "$2" "$3" "$4" "$5" "${CACHE}.jpg"
+			[ ! -f "$CACHE" ] && \
+				inkscape "$6" -e "$CACHE" 2>&1 > /dev/null
+			image "$1" "$2" "$3" "$4" "$5" "$CACHE"
 			;;
         *)
 			echo "Unknown command: " "$@"

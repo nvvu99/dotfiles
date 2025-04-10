@@ -26,7 +26,8 @@ export MANPAGER="nvim +Man!"
 
 export EDITOR=nvim
 
-export FZF_DEFAULT_OPTS='--layout=default --info inline --bind ctrl-a:select-all,ctrl-d:deselect-all,tab:up,shift-tab:down,alt-f:toggle,ctrl-p:toggle-preview'
+export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4 --layout=default --info inline --bind ctrl-a:select-all,ctrl-d:deselect-all,tab:up,shift-tab:down,alt-f:toggle,ctrl-p:toggle-preview'
 export FZF_DEFAULT_COMMAND='ag -g "" --hidden'
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+. "$HOME/.cargo/env"

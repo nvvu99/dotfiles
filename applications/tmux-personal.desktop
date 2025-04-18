@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Tmux Personal
+Comment=Tmux Personal
+Keywords=tmux;personal;
+Icon=~/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png
+TryExec=kitty
+Exec=kitty --class tmux-personal -e ~/.dotfiles/scripts/start_tmux personal
+Type=Application
+Terminal=false

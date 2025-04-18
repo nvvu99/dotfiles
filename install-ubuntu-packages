@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# kitty
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+sudo ln -sf ~/.local/kitty.app/bin/kitty /usr/bin/kitty
+sudo ln -sf ~/.local/kitty.app/bin/kitten /usr/bin/kitten
+
+# dracula themes
+mkdir -p ~/gitrepos/dracula
+git clone --depth=1 https://github.com/dracula/eclipse.git ~/gitrepos/dracula/eclipse
+git clone git@github.com:nvvu99/dracula-firefox.git ~/gitrepos/dracula/firefox
+
+# ImageMagick
+sudo curl -fL https://imagemagick.org/archive/binaries/magick -o /usr/bin/magick
+chmod +x /usr/bin/magick
+
+# Lazydocker
+go install github.com/jesseduffield/lazydocker@latest
+
+# Lazygit
+go install github.com/jesseduffield/lazygit@latest
+
+# Neovim
+mkdir -p ~/.local/nvim.app
+curl -fL https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.tar.gz | tar -xz -C ~/.local/nvim.app --strip-components=1
+sudo ln -sf ~/.local/nvim.app/bin/nvim /usr/bin/nvim
+
+# Rofi
+
+# Vimiv

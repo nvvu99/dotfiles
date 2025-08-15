@@ -12,16 +12,16 @@ local installed_lsp_servers = {
     'lua_ls',
     'marksman',
     'perlnavigator',
-    'phpactor',
+    -- 'phpactor',
     'pyright',
     'vtsls',
     'volar',
     'yamlls',
     'gopls',
-    'nginx_language_server',
+    -- 'nginx_language_server',
 }
 
-local function attach_navic(client, bufnr)
+local function on_lsp_attach(client, bufnr)
     local excluded_client_names = { 'phpactor' }
     if
         client.server_capabilities['documentSymbolProvider']
@@ -40,7 +40,7 @@ local default_lsp_settings = {
             },
         },
     },
-    on_attach = attach_navic,
+    on_attach = on_lsp_attach,
 }
 
 local function handle_setup_lsp(server_name)
@@ -58,6 +58,7 @@ return {
         'b0o/schemastore.nvim',
         'folke/neodev.nvim',
         'folke/neoconf.nvim',
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
     cond = function()
         return vim.fn.glob('.project') ~= ''
@@ -66,6 +67,18 @@ return {
         require('neodev').setup()
         require('neoconf').setup()
 
+        require('mason-tool-installer').setup({
+            ensure_installed = {
+                'php-debug-adapter',
+                'js-debug-adapter',
+                'prettier',
+                'stylua',
+                'pint',
+                'blade-formatter',
+                installed_lsp_servers,
+            },
+        })
+
         local lsp = vim.lsp
         lsp.handlers['textDocument/hover'] = lsp.with(lsp.handlers.hover, {
             border = 'rounded',
@@ -73,7 +86,6 @@ return {
 
         require('mason').setup()
         require('mason-lspconfig').setup({
-            ensure_installed = installed_lsp_servers,
             automatic_installation = true,
             handlers = {
                 handle_setup_lsp,

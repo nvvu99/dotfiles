@@ -1,10 +1,12 @@
 return {
-    name = 'lsp_lines',
-    url = 'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    'sontungexpt/better-diagnostic-virtual-text',
+    event = 'LspAttach',
+    opts = {
+        inline = false,
+    },
     init = function()
         vim.diagnostic.config({
             virtual_text = false,
         })
     end,
-    config = true,
 }

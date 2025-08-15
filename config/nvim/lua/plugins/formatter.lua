@@ -26,6 +26,13 @@ return {
                 yaml = filetypes.yaml.prettier,
                 vue = filetypes.vue.prettier,
                 php = filetypes.php.pint,
+                blade = function()
+                    return {
+                        exe = 'blade-formatter',
+                        args = { '-w' },
+                        stdin = false,
+                    }
+                end,
                 python = filetypes.python.black,
                 lua = filetypes.lua.stylua,
                 -- Use the special "*" filetype for defining formatter configurations on any filetype

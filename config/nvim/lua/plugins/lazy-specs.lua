@@ -2,11 +2,6 @@ return {
     'tpope/vim-sensible',
     'nvim-treesitter/nvim-treesitter-refactor',
     'm-demare/hlargs.nvim',
-    {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
-    },
-    { 'fdschmidt93/telescope-egrepify.nvim' },
     'windwp/nvim-spectre',
     { 'nacro90/numb.nvim', config = true },
     { 'tris203/precognition.nvim', config = true },
@@ -21,7 +16,6 @@ return {
     'JoosepAlviste/nvim-ts-context-commentstring',
     'folke/todo-comments.nvim',
     { 'numtostr/BufOnly.nvim', cmd = 'BufOnly' },
-    { 'natecraddock/workspaces.nvim', config = true },
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', config = true },
     {
         'vhyrro/luarocks.nvim',

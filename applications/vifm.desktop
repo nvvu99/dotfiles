@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=System;FileTools;FileManager;Utility;ConsoleOnly;
 Comment=Vi[m] like ncurses based file manager
-Exec=kitty --class vifm -e vifm %F
+Exec=kitty --class vifm -e /home/nguyen.van.vuc@sun-asterisk.com/.local/bin/vifmrun %F
 GenericName=File Manager
 Icon=vifm
 Name=Vifm

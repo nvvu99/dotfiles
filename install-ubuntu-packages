@@ -8,7 +8,8 @@ sudo ln -sf ~/.local/kitty.app/bin/kitten /usr/bin/kitten
 # dracula themes
 mkdir -p ~/gitrepos/dracula
 git clone --depth=1 https://github.com/dracula/eclipse.git ~/gitrepos/dracula/eclipse
-git clone git@github.com:nvvu99/dracula-firefox.git ~/gitrepos/dracula/firefox
+git clone github-personal:nvvu99/dracula-firefox.git ~/gitrepos/dracula/firefox
+git clone github-personal:nvvu99/dracula-gnome.git ~/gitrepos/dracula/gnome
 
 # ImageMagick
 sudo curl -fL https://imagemagick.org/archive/binaries/magick -o /usr/bin/magick

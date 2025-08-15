@@ -2,6 +2,11 @@ return {
     'kevinhwang91/nvim-ufo',
     opts = {
         open_fold_hl_timeout = 0,
+        close_fold_kinds_for_ft = {
+            default = { 'imports', 'comment' },
+            json = { 'array' },
+            c = { 'comment', 'region' },
+        },
         fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
             local newVirtText = {}
             local suffix = (' 󰁂 %d '):format(endLnum - lnum)
@@ -38,9 +43,10 @@ return {
             mappings = {
                 scrollU = '<C-u>',
                 scrollD = '<C-d>',
+                jumpTop = '[',
+                jumpBot = ']',
             },
         },
-        close_fold_kinds_for_ft = {},
         enable_get_fold_virt_text = true,
     },
     config = function(_, opts)
@@ -49,5 +55,12 @@ return {
 
         require('utils').nmap('zR', ufo.openAllFolds)
         require('utils').nmap('zM', ufo.closeAllFolds)
+
+        require('utils').nmap('K', function()
+            local winid = require('ufo').peekFoldedLinesUnderCursor()
+            if not winid then
+                vim.lsp.buf.hover()
+            end
+        end)
     end,
 }

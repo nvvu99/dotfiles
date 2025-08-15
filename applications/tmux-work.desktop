@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=Tmux Personal
-Comment=Tmux Personal
+Name=Tmux Work
+Comment=Tmux Work
 Keywords=tmux;personal;
 Icon=~/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png
 TryExec=kitty
-Exec=kitty --class tmux-personal -e /home/nguyen.van.vuc@sun-asterisk.com/.local/bin/start_tmux personal
+Exec=kitty --class tmux-work -e /home/nguyen.van.vuc@sun-asterisk.com/.local/bin/start_tmux Achievement
 Type=Application
 Terminal=false

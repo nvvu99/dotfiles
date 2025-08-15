@@ -15,6 +15,6 @@ return {
         local iswap = require('iswap')
         iswap.setup(opts)
 
-        require('utils').nmap('<Leader>s', iswap.imove_with)
+        require('utils').nmap('<Leader>s', iswap.imove_with, { desc = 'Iswap: Move with' })
     end,
 }

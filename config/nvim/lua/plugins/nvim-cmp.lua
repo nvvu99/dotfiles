@@ -28,6 +28,13 @@ return {
         require('copilot').setup({
             suggestion = { enabled = false },
             panel = { enabled = false },
+            -- should_attach = function(_, bufname)
+            --     if next(vim.lsp.get_clients({ name = bufname })) == nil then
+            --         return false
+            --     end
+            --
+            --     return true
+            -- end,
         })
         require('copilot_cmp').setup()
 

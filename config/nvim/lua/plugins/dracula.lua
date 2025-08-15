@@ -35,7 +35,7 @@ return {
         -- use transparent background
         transparent_bg = true, -- default false
         -- set custom lualine background color
-        lualine_bg_color = '#44475a', -- default nil
+        lualine_bg_color = colors.selection, -- default nil
         -- set italic comment
         italic_comment = true, -- default false
         -- overrides the default highlights see `:h synIDattr`
@@ -45,6 +45,8 @@ return {
             -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
             -- Nothing = {} -- clear highlight of Nothing
             WinSeparator = { fg = colors.purple },
+            WinBar = { bg = colors.nontext },
+            WinBarNC = { bg = colors.menu },
             FoldColumn = { fg = colors.gutter_fg },
             IblScope = { fg = colors.pink, nocombine = true },
             Folded = { bg = colors.gutter_fg },

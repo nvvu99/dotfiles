@@ -24,7 +24,7 @@ return {
             hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
         end)
 
-        nmap('<Leader><Leader>w', hop.hint_words)
-        nmap('<Leader><Leader>c', hop.hint_char1)
+        nmap('<Leader><Leader>w', hop.hint_words, { desc = 'Hop: Hint Words' })
+        nmap('<Leader><Leader>c', hop.hint_char1, { desc = 'Hop: Hint Char 1' })
     end,
 }

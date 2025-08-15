@@ -14,6 +14,6 @@ return {
     config = function(_, opts)
         require('nvim-tree').setup(opts)
 
-        require('utils').nmap('<Leader>m', require('nvim-tree.api').tree.toggle)
+        require('utils').nmap('<Leader>m', require('nvim-tree.api').tree.toggle, { desc = 'Nvim Tree: Toggle' })
     end,
 }

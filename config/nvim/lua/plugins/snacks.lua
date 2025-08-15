@@ -6,6 +6,7 @@ return {
         bigfile = {
             enabled = true,
             size = 1.5 * 1024 * 1024,
+            line_length = 2000,
         },
         notifier = {
             enabled = true,
@@ -19,7 +20,7 @@ return {
     config = function(_, opts)
         require('snacks').setup(opts)
 
-        require('utils').nmap('<Leader>h', Snacks.notifier.show_history)
+        require('utils').nmap('<Leader>h', Snacks.notifier.show_history, { desc = 'Snacks: Show History' })
 
         local prev = { new_name = '', old_name = '' } -- Prevents duplicate events
         vim.api.nvim_create_autocmd('User', {

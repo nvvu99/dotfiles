@@ -4,6 +4,6 @@ return {
         local outline = require('outline')
         outline.setup()
 
-        require('utils').nmap('<Leader>.', outline.toggle)
+        require('utils').nmap('<Leader>.', outline.toggle, { desc = 'Outline: Toggle' })
     end,
 }

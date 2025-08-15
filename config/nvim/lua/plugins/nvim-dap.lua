@@ -19,7 +19,6 @@ return {
     config = function()
         local vim_fn = vim.fn
         local dap = require('dap')
-        local debug_adapters_path = vim_fn.stdpath('config') .. '/debug-adapters'
 
         dap.defaults.fallback.terminar_win_cmd = 'tabnew'
 
@@ -50,21 +49,10 @@ return {
             host = 'localhost',
             port = '${port}',
             executable = {
-                command = 'node',
-                args = { debug_adapters_path .. '/vscode-js-debug/src/dapDebugServer.js', '${port}' },
+                command = 'js-debug-adapter',
+                args = { '${port}' },
             },
         }
-        local node_config = {
-            {
-                type = 'pwa-node',
-                request = 'attach',
-                name = 'Attach',
-                processId = require('dap.utils').pick_process,
-                cwd = '${workspaceFolder}',
-            },
-        }
-        dap.configurations.javascript = node_config
-        dap.configurations.typescript = node_config
 
         vim_fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
 

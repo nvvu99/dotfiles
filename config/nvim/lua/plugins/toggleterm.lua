@@ -42,9 +42,9 @@ return {
 
         map({ 'n', 't' }, '<Leader>g', function()
             lazygit:toggle()
-        end)
+        end, { desc = 'Lazygit' })
         map({ 'n', 't' }, '<Leader>d', function()
             lazydocker:toggle()
-        end)
+        end, { desc = 'Lazydocker' })
     end,
 }

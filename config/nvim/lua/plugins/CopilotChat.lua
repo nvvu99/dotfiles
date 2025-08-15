@@ -9,6 +9,8 @@ return {
             height = 0.8,
             border = 'rounded',
         },
+        model = 'gemini-2.5-pro',
+        agent = 'copilot',
     },
     config = function(_, opts)
         local copilot_chat = require('CopilotChat')

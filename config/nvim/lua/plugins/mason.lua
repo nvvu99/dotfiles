@@ -15,10 +15,11 @@ local installed_lsp_servers = {
     -- 'phpactor',
     'pyright',
     'vtsls',
-    'volar',
+    'vue_ls',
     'yamlls',
     'gopls',
     -- 'nginx_language_server',
+    'laravel_ls',
 }
 
 local function on_lsp_attach(client, bufnr)
@@ -44,19 +45,18 @@ local default_lsp_settings = {
 }
 
 local function handle_setup_lsp(server_name)
-    local lspconfig = require('lspconfig')
     local server_settings = require('lsp_settings')[server_name] or {}
 
-    lspconfig[server_name].setup(vim.tbl_extend('keep', default_lsp_settings, server_settings))
+    vim.lsp.config(server_name, vim.tbl_extend('keep', default_lsp_settings, server_settings))
 end
 
 return {
-    'williamboman/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
     dependencies = {
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason.nvim',
         'neovim/nvim-lspconfig',
         'b0o/schemastore.nvim',
-        'folke/neodev.nvim',
+        { 'folke/lazydev.nvim', ft = 'lua' },
         'folke/neoconf.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
@@ -64,7 +64,7 @@ return {
         return vim.fn.glob('.project') ~= ''
     end,
     config = function()
-        require('neodev').setup()
+        require('lazydev').setup({})
         require('neoconf').setup()
 
         require('mason-tool-installer').setup({
@@ -79,17 +79,12 @@ return {
             },
         })
 
-        local lsp = vim.lsp
-        lsp.handlers['textDocument/hover'] = lsp.with(lsp.handlers.hover, {
-            border = 'rounded',
-        })
-
         require('mason').setup()
         require('mason-lspconfig').setup({
-            automatic_installation = true,
             handlers = {
                 handle_setup_lsp,
             },
+            automatic_enable = true,
         })
     end,
 }

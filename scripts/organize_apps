@@ -29,4 +29,5 @@ workspace=2
 move_window 'vifm' $workspace $first_monitor_x
 
 workspace=4
+move_window 'google-chrome' $workspace $first_monitor_x
 move_window 'slack' $workspace $second_monitor_x

@@ -13,6 +13,7 @@ return {
         'L3MON4D3/LuaSnip',
         'rafamadriz/friendly-snippets',
         'zbirenbaum/copilot-cmp',
+        'SergioRibera/cmp-dotenv',
     },
     config = function()
         local vim_api = vim.api
@@ -28,13 +29,6 @@ return {
         require('copilot').setup({
             suggestion = { enabled = false },
             panel = { enabled = false },
-            -- should_attach = function(_, bufname)
-            --     if next(vim.lsp.get_clients({ name = bufname })) == nil then
-            --         return false
-            --     end
-            --
-            --     return true
-            -- end,
         })
         require('copilot_cmp').setup()
 
@@ -85,17 +79,23 @@ return {
                         fallback()
                     end
                 end, { 'i', 's' }),
-                ['<CR>'] = cmp.mapping.confirm(),
+                ['<CR>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() and cmp.get_active_entry() then
+                        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                    elseif cmp.visible() and luasnip.expandable() then
+                        luasnip.expand()
+                    else
+                        fallback()
+                    end
+                end, { 'i' }),
             }),
             sources = cmp.config.sources({
                 { name = 'copilot' },
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
-            }, {
+                { name = 'dotenv' },
                 { name = 'nvim_lsp_signature_help' },
-            }, {
                 { name = 'path' },
-            }, {
                 buffer_source,
             }),
             sorting = {

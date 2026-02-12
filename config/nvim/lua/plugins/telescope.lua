@@ -4,14 +4,14 @@ return {
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         { 'fdschmidt93/telescope-egrepify.nvim' },
     },
-    tag = '0.1.8',
+    tag = 'v0.1.9',
     opts = {
         defaults = {
             sorting_strategy = 'ascending',
             layout_config = {
                 horizontal = {
                     prompt_position = 'top',
-                    preview_width = 0.65,
+                    preview_width = 0.5,
                 },
             },
             mappings = {
@@ -19,11 +19,19 @@ return {
                     ['<Esc>'] = 'close',
                     ['<Tab>'] = 'move_selection_next',
                     ['<S-Tab>'] = 'move_selection_previous',
+                    ['<C-h>'] = 'preview_scrolling_left',
+                    ['<C-j>'] = 'preview_scrolling_down',
+                    ['<C-k>'] = 'preview_scrolling_up',
+                    ['<C-l>'] = 'preview_scrolling_right',
                     ['<C-s>'] = 'select_horizontal',
                 },
                 n = {
                     ['<Tab>'] = 'move_selection_next',
                     ['<S-Tab>'] = 'move_selection_previous',
+                    ['<C-h>'] = 'preview_scrolling_left',
+                    ['<C-j>'] = 'preview_scrolling_down',
+                    ['<C-k>'] = 'preview_scrolling_up',
+                    ['<C-l>'] = 'preview_scrolling_right',
                     ['<C-s>'] = 'select_horizontal',
                     v = 'toggle_selection',
                 },

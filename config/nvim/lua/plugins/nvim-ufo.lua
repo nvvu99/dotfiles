@@ -59,7 +59,7 @@ return {
         require('utils').nmap('K', function()
             local winid = require('ufo').peekFoldedLinesUnderCursor()
             if not winid then
-                vim.lsp.buf.hover()
+                require('utils').diagnostic_hover()
             end
         end)
     end,

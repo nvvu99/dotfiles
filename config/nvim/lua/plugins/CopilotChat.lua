@@ -9,7 +9,7 @@ return {
             height = 0.8,
             border = 'rounded',
         },
-        model = 'gemini-2.5-pro',
+        model = 'claude-sonnet-4.5',
         agent = 'copilot',
     },
     config = function(_, opts)

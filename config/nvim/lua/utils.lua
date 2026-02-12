@@ -30,4 +30,7 @@ return {
     tmap_buffer = function(shortcut, command, options)
         map_buffer('t', shortcut, command, options)
     end,
+    diagnostic_hover = function()
+        require('eagle.keyboard_handler').render_keyboard_mode()
+    end,
 }

@@ -32,4 +32,18 @@ return {
     { 'kevinhwang91/promise-async', lazy = true },
     { 'nvim-tree/nvim-web-devicons', lazy = true },
     { 'niuiic/core.nvim', lazy = true },
+    {
+        'heilgar/nvim-http-client',
+        event = 'VeryLazy',
+        ft = { 'http', 'rest' },
+        opts = {},
+    },
+    {
+        'soulis-1256/eagle.nvim',
+        opts = {
+            border = 'rounded',
+            keyboard_mode = true,
+            mouse_mode = false,
+        },
+    },
 }

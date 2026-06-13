@@ -1,6 +1,5 @@
 return {
     'tpope/vim-sensible',
-    'nvim-treesitter/nvim-treesitter-refactor',
     'm-demare/hlargs.nvim',
     'windwp/nvim-spectre',
     { 'nacro90/numb.nvim', config = true },

@@ -12,13 +12,11 @@ local installed_lsp_servers = {
     'lua_ls',
     'marksman',
     'perlnavigator',
-    -- 'phpactor',
-    'pyright',
+    'basedpyright',
     'vtsls',
     'vue_ls',
     'yamlls',
     'gopls',
-    -- 'nginx_language_server',
     'laravel_ls',
 }
 
@@ -68,15 +66,13 @@ return {
         require('neoconf').setup()
 
         require('mason-tool-installer').setup({
-            ensure_installed = {
-                'php-debug-adapter',
+            ensure_installed = vim.tbl_extend('keep', {
+                'blade-formatter',
                 'js-debug-adapter',
+                'php-debug-adapter',
                 'prettier',
                 'stylua',
-                'pint',
-                'blade-formatter',
-                installed_lsp_servers,
-            },
+            }, installed_lsp_servers),
         })
 
         require('mason').setup()

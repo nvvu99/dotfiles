@@ -12,7 +12,7 @@ return {
         'saadparwaiz1/cmp_luasnip',
         'L3MON4D3/LuaSnip',
         'rafamadriz/friendly-snippets',
-        'zbirenbaum/copilot-cmp',
+        -- 'zbirenbaum/copilot-cmp',
         'SergioRibera/cmp-dotenv',
     },
     config = function()
@@ -26,11 +26,11 @@ return {
             paths = { '~/.local/share/nvim/lazy/friendly-snippets' },
         })
 
-        require('copilot').setup({
-            suggestion = { enabled = false },
-            panel = { enabled = false },
-        })
-        require('copilot_cmp').setup()
+        -- require('copilot').setup({
+        --     suggestion = { enabled = false },
+        --     panel = { enabled = false },
+        -- })
+        -- require('copilot_cmp').setup()
 
         local buffer_source = {
             name = 'buffer',
@@ -90,7 +90,7 @@ return {
                 end, { 'i' }),
             }),
             sources = cmp.config.sources({
-                { name = 'copilot' },
+                -- { name = 'copilot' },
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
                 { name = 'dotenv' },
@@ -101,7 +101,7 @@ return {
             sorting = {
                 priority_weight = 2,
                 comparators = {
-                    require('copilot_cmp.comparators').prioritize,
+                    -- require('copilot_cmp.comparators').prioritize,
                     cmp.config.compare.offset,
                     cmp.config.compare.exact,
                     cmp.config.compare.score,

@@ -12,6 +12,6 @@ export TERMINAL=/usr/bin/kitty
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export GLFW_IM_MODULE=ibus
-export GTK_IM_MODULE=fcitx
+export GTK_IM_MODULE=ibus
 
 alias sail="vendor/bin/sail"

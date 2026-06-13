@@ -69,4 +69,5 @@ vim.cmd([[
 let base16colorspace=256
 colorscheme dracula
 set fo-=t
+language en_US.utf8
 ]])

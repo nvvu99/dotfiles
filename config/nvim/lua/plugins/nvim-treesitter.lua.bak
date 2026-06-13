@@ -1,0 +1,92 @@
+return {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    branch = 'main',
+    opts = {
+        -- A list of parser names, or "all"
+        ensure_installed = 'all',
+        ignore_install = { 'ipkg' },
+        -- Install parsers synchronously (only applied to `ensure_installed`)
+        sync_install = false,
+        -- Automatically install missing parsers when entering buffer
+        auto_install = true,
+        rainbow = {
+            enable = true,
+            -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+            extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+            max_file_lines = nil, -- Do not enable for files with more than n lines, int
+            -- colors = {}, -- table of hex strings
+            -- termcolors = {} -- table of colour name strings
+        },
+        textobjects = {
+            select = {
+                enable = true,
+                lookahead = true,
+                keymaps = {
+                    ['ab'] = '@block.outer',
+                    ['ib'] = '@block.inner',
+                    ['ac'] = '@class.outer',
+                    ['ic'] = '@class.inner',
+                    ['af'] = '@function.outer',
+                    ['if'] = '@function.inner',
+                    ['al'] = '@loop.outer',
+                    ['il'] = '@loop.inner',
+                    ['aa'] = '@parameter.outer',
+                    ['ia'] = '@parameter.inner',
+                },
+            },
+        },
+        context_comment_string = {
+            enable = true,
+            enable_autocmd = false,
+        },
+        refactor = {
+            highlight_definitions = {
+                enable = true,
+                -- Set to false if you have an `updatetime` of ~100.
+                clear_on_cursor_move = true,
+            },
+        },
+    },
+    init = function()
+        vim.filetype.add({
+            pattern = {
+                ['.*.tex'] = 'tex',
+            },
+        })
+        vim.api.nvim_create_autocmd('FileType', {
+            callback = function()
+                -- Enable treesitter highlighting and disable regex syntax
+                pcall(vim.treesitter.start)
+                -- Enable treesitter-based indentation
+                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end,
+        })
+        local ensureInstalled = {
+            'lua',
+            'python',
+            'typescript',
+            -- ... your parsers
+        }
+        local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+        local parsersToInstall = vim.iter(ensureInstalled)
+            :filter(function(parser)
+                return not vim.tbl_contains(alreadyInstalled, parser)
+            end)
+            :totable()
+        require('nvim-treesitter').install(parsersToInstall)
+    end,
+    config = function(_, opts)
+        require('nvim-treesitter').setup(opts)
+
+        local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+        parser_config.blade = {
+            install_info = {
+                url = 'https://github.com/EmranMR/tree-sitter-blade',
+                files = { 'src/parser.c' },
+                branch = 'main',
+            },
+            filetype = 'blade',
+        }
+    end,
+}

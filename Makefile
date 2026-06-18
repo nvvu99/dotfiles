@@ -80,6 +80,12 @@ zsh:
 	git clone https://github.com/romkatv/powerlevel10k.git --depth 1 ~/.powerlevel10k
 	if test ! -f '${ZSH_CUSTOM}/themes/powerlevel10k.zsh-theme' ; then ln -s ~/.powerlevel10k/powerlevel10k.zsh-theme ${ZSH_CUSTOM}/themes/powerlevel10k.zsh-theme ; fi
 
+fish:
+	if test -f '${HOME}/.config/fish/config.fish'; then mv -f ~/.config/fish/config.fish ~/.config/fish/config.fish.bak; fi
+	if test -f '${HOME}/.config/fish/fish_plugins'; then mv -f ~/.config/fish/fish_plugins ~/.config/fish/fish_plugins.bak; fi
+	ln -s ${DOTFILES}/fish/config.fish ~/.config/fish/config.fish
+	ln -s ${DOTFILES}/fish/fish_plugins ~/.config/fish/fish_plugins
+
 packages:
 	# sudo pacman -S --needed yay --noconfirm
 	yay -S --needed $$(< pkglist-native.txt) $$(< pkglist-foreign.txt)

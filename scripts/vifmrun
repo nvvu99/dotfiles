@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-export SHELL=/usr/bin/zsh
-
+export SHELL=/usr/bin/fish
 if [ -z "$(command -v vifm)" ]; then
     printf "vifm isn't installed on your system!\n"
     exit 1
